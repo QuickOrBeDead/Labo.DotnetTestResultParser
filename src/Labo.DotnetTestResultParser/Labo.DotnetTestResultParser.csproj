@@ -5,6 +5,8 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyName>dotnet-labodotnettestresultsparser</AssemblyName>
     <Description>.Net Core Test Result Parser Global Tool</Description>
+    <Title>.Net Core Test Result Parser Global Tool</Title>
+    <Summary>.Net Core Test Result Parser Global Tool</Summary>
     <IsPackable>true</IsPackable>
     <PackAsTool>true</PackAsTool>
     <ApplicationIcon />
