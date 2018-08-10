@@ -21,6 +21,7 @@
     <RepositoryUrl>https://github.com/QuickOrBeDead/Labo.DotnetTestResultParser</RepositoryUrl>
     <Company>Labo</Company>
     <Copyright>Copyright (c) 2018 Bora Akgün</Copyright>
+    <PackageIconUrl>https://raw.githubusercontent.com/QuickOrBeDead/Labo.DotnetTestResultParser/master/icon.png</PackageIconUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
