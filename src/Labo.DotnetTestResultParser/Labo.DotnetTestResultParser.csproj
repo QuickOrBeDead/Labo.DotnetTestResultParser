@@ -20,10 +20,11 @@
     <PackageLicenseUrl>https://github.com/QuickOrBeDead/Labo.DotnetTestResultParser/blob/master/LICENSE</PackageLicenseUrl>
     <Authors>boraa</Authors>
     <PackageTags>dotnet global tools unit test result parser nunit</PackageTags>
-    <RepositoryUrl>https://github.com/QuickOrBeDead/Labo.DotnetTestResultParser</RepositoryUrl>
+    <RepositoryUrl>https://github.com/QuickOrBeDead/Labo.DotnetTestResultParser.git</RepositoryUrl>
     <Company>Labo</Company>
     <Copyright>Copyright (c) 2018 Bora Akgün</Copyright>
     <PackageIconUrl>https://raw.githubusercontent.com/QuickOrBeDead/Labo.DotnetTestResultParser/master/icon.png</PackageIconUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
