@@ -1,5 +1,3 @@
-# Labo.DotnetTestResultParser
-
 dotnet-labodotnettestresultsparser
 ============
 
@@ -56,7 +54,7 @@ cd Labo.DotnetTestResultParser/src/Labo.DotnetTestResultParser
 dotnet pack -c release -o nupkg
 ```
 
-Output is located in ```src/Labo.DotnetTestResultParser/bin/Release```
+Output is located in ```src/Labo.DotnetTestResultParser/nupkg```
 
 ### Uninstall
 
