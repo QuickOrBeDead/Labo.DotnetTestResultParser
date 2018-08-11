@@ -1,5 +1,7 @@
 ﻿namespace Labo.DotnetTestResultParser.Tests
 {
+    using System.IO;
+    using System.Reflection;
     using System.Xml.Linq;
 
     using NUnit.Framework;
@@ -17,11 +19,35 @@
             TestRun testRun = TestResultsParser.Parse(XDocument.Parse(xml));
 
             // Assert
-            Assert.AreEqual("Failed", testRun.Result);
-            Assert.AreEqual(6, testRun.Total);
-            Assert.AreEqual(3, testRun.Passed);
-            Assert.AreEqual(2, testRun.Failed);
-            Assert.AreEqual(1, testRun.Skipped);
+            AssertTestRun(testRun, 6, 3, 2, 1, "Failed");
+        }
+
+        [Test]
+        public void ParseXml()
+        {
+            // Arrange
+            string path = GetTestXmlPath("Organon.ExceptionHandling.AspNetCore.Tests.unittest.xml");
+            TestResultsParser testResultsParser = new TestResultsParser();
+
+            // Act
+            TestRun testRun = testResultsParser.ParseXml(path);
+
+            // Assert
+            AssertTestRun(testRun, 9, 8, 1, 0, "Failed");
+        }
+
+        private static string GetTestXmlPath(string xmlPath)
+        {
+            return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "_testresultxmls", xmlPath);
+        }
+
+        private static void AssertTestRun(TestRun testRun, int total, int passed, int failed, int skipped, string result)
+        {
+            Assert.AreEqual(result, testRun.Result);
+            Assert.AreEqual(total, testRun.Total);
+            Assert.AreEqual(passed, testRun.Passed);
+            Assert.AreEqual(failed, testRun.Failed);
+            Assert.AreEqual(skipped, testRun.Skipped);
         }
     }
 }

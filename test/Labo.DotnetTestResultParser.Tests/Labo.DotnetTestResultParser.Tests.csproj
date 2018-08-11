@@ -18,4 +18,10 @@
     <PackageReference Include="NunitXml.TestLogger" Version="1.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="_testresultxmls\Organon.ExceptionHandling.AspNetCore.Tests.unittest.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
