@@ -15,7 +15,7 @@
         /// <param name="xmlPath">The XML path.</param>
         public TestRun ParseXml(string xmlPath)
         {
-            XDocument xmlDocument = XDocument.Parse(xmlPath);
+            XDocument xmlDocument = XDocument.Load(xmlPath);
             return Parse(xmlDocument);
         }
 
