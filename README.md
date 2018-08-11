@@ -45,7 +45,7 @@ $ dotnet labodotnettestresultsparser path
 ## Build
 
 ```
-git clone https://github.com/QuickOrBeDead/Labo.DotnetTestResultParser
+git clone https://github.com/QuickOrBeDead/Labo.DotnetTestResultParser.git
 ```
 ```
 cd Labo.DotnetTestResultParser/src/Labo.DotnetTestResultParser
