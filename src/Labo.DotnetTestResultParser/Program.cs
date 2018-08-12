@@ -5,6 +5,8 @@
     using System.Reflection;
     using System.Threading.Tasks;
 
+    using Labo.DotnetTestResultParser.Model;
+
     using McMaster.Extensions.CommandLineUtils;
 
     /// <summary>
@@ -23,12 +25,22 @@
         /// </value>
         [Required]
         [Argument(0, "path", Description = "The test result xml path.")]
-        public string Path { get; set; }
+        public string Path { get; }
+
+        /// <summary>
+        /// Gets or sets the format.
+        /// </summary>
+        /// <value>
+        /// The format.
+        /// </value>
+        [AllowedValues("NUnit", IgnoreCase = true)]
+        [Option("-f|--format", Description = "Unit test result xml format. (Default: NUnit)")]
+        public UnitTestResultXmlFormat Format { get; } = UnitTestResultXmlFormat.NUnit;
 
         private Task<int> OnExecuteAsync()
         {
-            ITestResultsParser testResultsParser = new TestResultsParser();
-            TestRun testRun = testResultsParser.ParseXml(Path);
+            UnitTestResultParser unitTestResultParser = new UnitTestResultParser(Format);
+            TestRun testRun = unitTestResultParser.ParseXml(Path);
 
             Console.WriteLine("Total tests: {0}. Passed: {1}. Failed: {2}. Skipped: {3}.", testRun.Total, testRun.Passed, testRun.Failed, testRun.Skipped);
             Console.WriteLine("Test Run {0}.", testRun.Result);

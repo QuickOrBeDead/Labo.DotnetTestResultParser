@@ -1,13 +1,16 @@
-﻿namespace Labo.DotnetTestResultParser.Tests
+﻿namespace Labo.DotnetTestResultParser.Tests.Parsers
 {
     using System.IO;
     using System.Reflection;
     using System.Xml.Linq;
 
+    using Labo.DotnetTestResultParser.Model;
+    using Labo.DotnetTestResultParser.Parsers;
+
     using NUnit.Framework;
 
     [TestFixture]
-    public class TestResultsParserFixture
+    public class NUnitTestResultsParserFixture
     {
         [Test]
         public void Parse()
@@ -16,7 +19,7 @@
             string xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?><test-run id=\"2\" duration=\"2.9130068999999832\" testcasecount=\"150\" total=\"6\" passed=\"3\" failed=\"2\" skipped=\"1\" result=\"Failed\" start-time=\"2018-08-10T 13:16:57Z\" end-time=\"2018-08-10T 13:17:02Z\"></test-run>";
 
             // Act
-            TestRun testRun = TestResultsParser.Parse(XDocument.Parse(xml));
+            TestRun testRun = NUnitTestResultsParser.Parse(XDocument.Parse(xml));
 
             // Assert
             AssertTestRun(testRun, 6, 3, 2, 1, "Failed");
@@ -27,7 +30,7 @@
         {
             // Arrange
             string path = GetTestXmlPath("Organon.ExceptionHandling.AspNetCore.Tests.unittest.xml");
-            TestResultsParser testResultsParser = new TestResultsParser();
+            NUnitTestResultsParser testResultsParser = new NUnitTestResultsParser();
 
             // Act
             TestRun testRun = testResultsParser.ParseXml(path);

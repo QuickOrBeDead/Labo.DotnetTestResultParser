@@ -1,18 +1,18 @@
-﻿namespace Labo.DotnetTestResultParser
+﻿namespace Labo.DotnetTestResultParser.Parsers
 {
     using System;
     using System.Globalization;
     using System.Xml.Linq;
 
+    using Labo.DotnetTestResultParser.Model;
+
     /// <summary>
-    /// The test results parser class.
+    /// The nunit test results parser class.
     /// </summary>
-    public sealed class TestResultsParser : ITestResultsParser
+    /// <seealso cref="ITestResultsParser" />
+    public sealed class NUnitTestResultsParser : ITestResultsParser
     {
-        /// <summary>
-        /// Parses the text result XML.
-        /// </summary>
-        /// <param name="xmlPath">The XML path.</param>
+        /// <inheritdoc />
         public TestRun ParseXml(string xmlPath)
         {
             XDocument xmlDocument = XDocument.Load(xmlPath);

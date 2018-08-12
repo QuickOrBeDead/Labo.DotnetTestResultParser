@@ -1,5 +1,7 @@
-﻿namespace Labo.DotnetTestResultParser
+﻿namespace Labo.DotnetTestResultParser.Parsers
 {
+    using Labo.DotnetTestResultParser.Model;
+
     /// <summary>
     /// The test results parser interface.
     /// </summary>

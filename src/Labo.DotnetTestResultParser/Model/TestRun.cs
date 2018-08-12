@@ -1,4 +1,4 @@
-﻿namespace Labo.DotnetTestResultParser
+﻿namespace Labo.DotnetTestResultParser.Model
 {
     /// <summary>
     /// The test run class.
