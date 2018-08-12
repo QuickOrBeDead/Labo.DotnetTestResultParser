@@ -33,12 +33,13 @@ Arguments:
 Options:
   --version             Show version information
   -?|-h|--help          Show help information
+  -f|--format   		Unit test result xml format. (Default: NUnit)
 ```
 
 ### Parse Test Reults Xml
 
 ```
-$ dotnet labodotnettestresultsparser path
+$ dotnet labodotnettestresultsparser <path> -f NUnit
 
 ```
 
@@ -67,3 +68,4 @@ dotnet tool uninstall -g dotnet-labodotnettestresultsparser
 * [.NET Core 2.1 Global Tools Annoucement](https://blogs.msdn.microsoft.com/dotnet/2018/02/27/announcing-net-core-2-1-preview-1/#global-tools)
 * [.NET Core Global Tools Sample](https://github.com/dotnet/core/blob/master/samples/dotnetsay/README.md)
 * [.NET Core Global Tools and Gotchas](https://www.natemcmaster.com/blog/2018/02/02/dotnet-global-tool/)
+* [NUnit Test Result XML Format](https://github.com/nunit/docs/wiki/Test-Result-XML-Format)
