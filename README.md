@@ -69,3 +69,4 @@ dotnet tool uninstall -g dotnet-labodotnettestresultsparser
 * [.NET Core Global Tools Sample](https://github.com/dotnet/core/blob/master/samples/dotnetsay/README.md)
 * [.NET Core Global Tools and Gotchas](https://www.natemcmaster.com/blog/2018/02/02/dotnet-global-tool/)
 * [NUnit Test Result XML Format](https://github.com/nunit/docs/wiki/Test-Result-XML-Format)
+
