@@ -37,7 +37,16 @@
         [Option("-f|--format", Description = "Unit test result xml format. (Default: NUnit)")]
         public UnitTestResultXmlFormat Format { get; } = UnitTestResultXmlFormat.NUnit;
 
-        private Task<int> OnExecuteAsync()
+        /// <summary>
+        /// Gets a value indicating whether [fail when result is failed].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [fail when result is failed]; otherwise, <c>false</c>.
+        /// </value>
+        [Option("--fail-when-result-is-failed", Description = "Fails the program when the unit test result is 'Failed'.")]
+        public bool FailWhenResultIsFailed { get; } = false;
+
+        private int OnExecute()
         {
             UnitTestResultParser unitTestResultParser = new UnitTestResultParser(Format);
             TestRun testRun = unitTestResultParser.ParseXml(Path);
@@ -45,7 +54,12 @@
             Console.WriteLine("Total tests: {0}. Passed: {1}. Failed: {2}. Skipped: {3}.", testRun.Total, testRun.Passed, testRun.Failed, testRun.Skipped);
             Console.WriteLine("Test Run {0}.", testRun.Result);
 
-            return Task.FromResult(0);
+            if (FailWhenResultIsFailed && !testRun.IsSuccess)
+            {
+                return -1;
+            }
+
+            return 0;
         }
 
         /// <summary>
@@ -53,7 +67,7 @@
         /// </summary>
         /// <param name="args">The arguments.</param>
         /// <returns></returns>
-        public static Task<int> Main(string[] args) => CommandLineApplication.ExecuteAsync<Program>(args);
+        public static int Main(string[] args) => CommandLineApplication.Execute<Program>(args);
 
         private static string GetVersion() =>
             typeof(Program).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;

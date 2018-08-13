@@ -31,15 +31,16 @@ Arguments:
   path  The test result xml path.
 
 Options:
-  --version             Show version information
-  -?|-h|--help          Show help information
-  -f|--format   		Unit test result xml format. (Default: NUnit)
+  --version                     Show version information
+  -?|-h|--help                  Show help information
+  -f|--format   		        Unit test result xml format. (Default: NUnit)
+  --fail-when-result-is-failed  Fails the program when the unit test result is 'Failed'.
 ```
 
 ### Parse Test Reults Xml
 
 ```
-$ dotnet labodotnettestresultsparser <path> -f NUnit
+$ dotnet labodotnettestresultsparser <path> -f NUnit --fail-when-result-is-failed
 
 ```
 

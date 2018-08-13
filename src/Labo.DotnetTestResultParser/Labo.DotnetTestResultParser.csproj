@@ -25,9 +25,9 @@ Example: dotnet labodotnettestresultsparser &lt;xmlpath&gt; -f NUnit</Descriptio
     <OutputType>Exe</OutputType>
     <StartupObject />
     <TieredCompilation>true</TieredCompilation>
-    <AssemblyVersion>0.3.0.0</AssemblyVersion>
-    <FileVersion>0.3.0.0</FileVersion>
-    <Version>0.3.0</Version>
+    <AssemblyVersion>0.4.0.0</AssemblyVersion>
+    <FileVersion>0.4.0.0</FileVersion>
+    <Version>0.4.0</Version>
     <PackageProjectUrl>https://github.com/QuickOrBeDead/Labo.DotnetTestResultParser</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/QuickOrBeDead/Labo.DotnetTestResultParser/blob/master/LICENSE</PackageLicenseUrl>
     <Authors>boraa</Authors>
@@ -43,14 +43,12 @@ Example: dotnet labodotnettestresultsparser &lt;xmlpath&gt; -f NUnit</Descriptio
     <DocumentationFile>bin\Debug\netcoreapp2.1\Labo.DotnetTestResultParser.xml</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
-    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\Release\netcoreapp2.1\Labo.DotnetTestResultParser.xml</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
-    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

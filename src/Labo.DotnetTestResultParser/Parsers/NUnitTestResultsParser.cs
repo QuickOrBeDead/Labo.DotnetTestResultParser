@@ -39,7 +39,8 @@
                            Total = total,
                            Skipped = skipped,
                            Passed = passed,
-                           Failed = failed
+                           Failed = failed,
+                           IsSuccess = string.Equals("Passed", result, StringComparison.OrdinalIgnoreCase)
                        };
         }
 

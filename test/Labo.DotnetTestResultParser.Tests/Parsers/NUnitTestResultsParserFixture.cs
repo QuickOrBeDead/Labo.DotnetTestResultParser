@@ -22,7 +22,7 @@
             TestRun testRun = NUnitTestResultsParser.Parse(XDocument.Parse(xml));
 
             // Assert
-            AssertTestRun(testRun, 6, 3, 2, 1, "Failed");
+            AssertTestRun(testRun, 6, 3, 2, 1, "Failed", false);
         }
 
         [Test]
@@ -36,7 +36,7 @@
             TestRun testRun = testResultsParser.ParseXml(path);
 
             // Assert
-            AssertTestRun(testRun, 9, 8, 1, 0, "Failed");
+            AssertTestRun(testRun, 9, 8, 1, 0, "Failed", false);
         }
 
         private static string GetTestXmlPath(string xmlPath)
@@ -44,13 +44,14 @@
             return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "_testresultxmls", xmlPath);
         }
 
-        private static void AssertTestRun(TestRun testRun, int total, int passed, int failed, int skipped, string result)
+        private static void AssertTestRun(TestRun testRun, int total, int passed, int failed, int skipped, string result, bool isSuccess)
         {
             Assert.AreEqual(result, testRun.Result);
             Assert.AreEqual(total, testRun.Total);
             Assert.AreEqual(passed, testRun.Passed);
             Assert.AreEqual(failed, testRun.Failed);
             Assert.AreEqual(skipped, testRun.Skipped);
+            Assert.AreEqual(isSuccess, testRun.IsSuccess);
         }
     }
 }
