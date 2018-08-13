@@ -33,7 +33,7 @@ Arguments:
 Options:
   --version                     Show version information
   -?|-h|--help                  Show help information
-  -f|--format   		        Unit test result xml format. (Default: NUnit)
+  -f|--format                   Unit test result xml format. (Default: NUnit)
   --fail-when-result-is-failed  Fails the program when the unit test result is 'Failed'.
 ```
 
