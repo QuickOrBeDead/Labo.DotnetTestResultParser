@@ -15,9 +15,12 @@ Options:
   --version     Show version information
   -?|-h|--help  Show help information
   -f|--format   Unit test result xml format. (Default: NUnit)
+  -o|--output  Output file to write results. (Default output is Console)
+  -t|--template The output template. Allowed values are: Summary, TestResult. (Default: Summary)
   --fail-when-result-is-failed  Fails the program when the unit test result is 'Failed'.
 
-Example: dotnet labodotnettestresultsparser &lt;xmlpath&gt; -f NUnit --fail-when-result-is-failed</Description>
+Example: dotnet labodotnettestresultsparser &lt;xmlpath&gt; -f NUnit --fail-when-result-is-failed
+Example: dotnet labodotnettestresultsparser &lt;xmlpath&gt; -f NUnit -o &lt;output.txt&gt; -t TestResult</Description>
     <Title>.Net Core Test Result Parser Global Tool</Title>
     <Summary>.Net Core Test Result Parser Global Tool</Summary>
     <IsPackable>true</IsPackable>
@@ -26,9 +29,9 @@ Example: dotnet labodotnettestresultsparser &lt;xmlpath&gt; -f NUnit --fail-when
     <OutputType>Exe</OutputType>
     <StartupObject />
     <TieredCompilation>true</TieredCompilation>
-    <AssemblyVersion>0.4.0.0</AssemblyVersion>
-    <FileVersion>0.4.0.0</FileVersion>
-    <Version>0.4.0</Version>
+    <AssemblyVersion>0.5.0.0</AssemblyVersion>
+    <FileVersion>0.5.0.0</FileVersion>
+    <Version>0.5.0</Version>
     <PackageProjectUrl>https://github.com/QuickOrBeDead/Labo.DotnetTestResultParser</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/QuickOrBeDead/Labo.DotnetTestResultParser/blob/master/LICENSE</PackageLicenseUrl>
     <Authors>boraa</Authors>
