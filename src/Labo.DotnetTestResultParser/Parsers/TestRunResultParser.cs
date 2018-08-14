@@ -1,13 +1,12 @@
-﻿namespace Labo.DotnetTestResultParser
+﻿namespace Labo.DotnetTestResultParser.Parsers
 {
     using Labo.DotnetTestResultParser.Model;
-    using Labo.DotnetTestResultParser.Parsers;
     using Labo.DotnetTestResultParser.Parsers.Factory;
 
     /// <summary>
-    /// The test results parser class.
+    /// The test run results parser class.
     /// </summary>
-    public sealed class UnitTestResultParser
+    public sealed class TestRunResultParser
     {
         private readonly ITestResultsParser _testResultsParser;
 
@@ -20,20 +19,20 @@
         public UnitTestResultXmlFormat Format { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UnitTestResultParser"/> class.
+        /// Initializes a new instance of the <see cref="TestRunResultParser"/> class.
         /// </summary>
         /// <param name="unitTestResultXmlFormat">The unit test result XML format.</param>
-        public UnitTestResultParser(UnitTestResultXmlFormat unitTestResultXmlFormat)
+        public TestRunResultParser(UnitTestResultXmlFormat unitTestResultXmlFormat)
             : this(new DefaultTestResultsParserFactory(), unitTestResultXmlFormat)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UnitTestResultParser"/> class.
+        /// Initializes a new instance of the <see cref="TestRunResultParser"/> class.
         /// </summary>
         /// <param name="testResultsParserFactory">The test results parser factory.</param>
         /// <param name="unitTestResultXmlFormat">The unit test result XML format.</param>
-        public UnitTestResultParser(ITestResultsParserFactory testResultsParserFactory, UnitTestResultXmlFormat unitTestResultXmlFormat)
+        public TestRunResultParser(ITestResultsParserFactory testResultsParserFactory, UnitTestResultXmlFormat unitTestResultXmlFormat)
         {
             Format = unitTestResultXmlFormat;
             _testResultsParser = testResultsParserFactory.CreateParser(unitTestResultXmlFormat);

@@ -34,13 +34,24 @@ Options:
   --version                     Show version information
   -?|-h|--help                  Show help information
   -f|--format                   Unit test result xml format. (Default: NUnit)
+  -o|--output                   Output file to write results. (Default output is Console)
+  -t|--template                 The output template. Allowed values are: Summary, TestResult. (Default: Summary)
   --fail-when-result-is-failed  Fails the program when the unit test result is 'Failed'.
 ```
 
-### Parse Test Reults Xml
+## Examples
+
+### Parse Test Reults Xml and Fail Program if Test Result is Failed
 
 ```
 $ dotnet labodotnettestresultsparser <path> -f NUnit --fail-when-result-is-failed
+
+```
+
+### Writes Only the Test Result Text (Passed | Failed) to the Output Text
+
+```
+$ dotnet labodotnettestresultsparser <path> -f NUnit -o <output.txt> -t TestResult
 
 ```
 

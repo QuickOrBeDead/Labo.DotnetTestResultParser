@@ -1,4 +1,4 @@
-﻿namespace Labo.DotnetTestResultParser.Tests
+﻿namespace Labo.DotnetTestResultParser.Tests.Parsers
 {
     using Labo.DotnetTestResultParser.Model;
     using Labo.DotnetTestResultParser.Parsers;
@@ -9,7 +9,7 @@
     using NUnit.Framework;
 
     [TestFixture]
-    public class UnitTestResultParserFixture
+    public class TestRunResultParserFixture
     {
         [Test]
         public void ParseXml()
@@ -21,7 +21,7 @@
 
             ITestResultsParser testResultsParser = CreateTestResultsParser(xmlPath, expectedTestRun);
             ITestResultsParserFactory testResultsParserFactory = CreateTestResultsParserFactory(unitTestResultXmlFormat, testResultsParser);
-            UnitTestResultParser unitTestResultParser = CreateUnitTestResultParser(testResultsParserFactory, unitTestResultXmlFormat);
+            TestRunResultParser unitTestResultParser = CreateUnitTestResultParser(testResultsParserFactory, unitTestResultXmlFormat);
 
             // Act
             TestRun testRun = unitTestResultParser.ParseXml(xmlPath);
@@ -48,9 +48,9 @@
             return testResultsParser;
         }
 
-        private static UnitTestResultParser CreateUnitTestResultParser(ITestResultsParserFactory testResultsParserFactory, UnitTestResultXmlFormat unitTestResultXmlFormat)
+        private static TestRunResultParser CreateUnitTestResultParser(ITestResultsParserFactory testResultsParserFactory, UnitTestResultXmlFormat unitTestResultXmlFormat)
         {
-            UnitTestResultParser unitTestResultParser = new UnitTestResultParser(testResultsParserFactory, unitTestResultXmlFormat);
+            TestRunResultParser unitTestResultParser = new TestRunResultParser(testResultsParserFactory, unitTestResultXmlFormat);
             return unitTestResultParser;
         }
     }

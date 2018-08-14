@@ -1,11 +1,13 @@
 ﻿namespace Labo.DotnetTestResultParser
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
     using System.Reflection;
-    using System.Threading.Tasks;
 
     using Labo.DotnetTestResultParser.Model;
+    using Labo.DotnetTestResultParser.Templates;
+    using Labo.DotnetTestResultParser.Templates.Factory;
+    using Labo.DotnetTestResultParser.Writers;
+    using Labo.DotnetTestResultParser.Writers.Factory;
 
     using McMaster.Extensions.CommandLineUtils;
 
@@ -33,7 +35,6 @@
         /// <value>
         /// The format.
         /// </value>
-        [AllowedValues("NUnit", IgnoreCase = true)]
         [Option("-f|--format", Description = "Unit test result xml format. (Default: NUnit)")]
         public UnitTestResultXmlFormat Format { get; } = UnitTestResultXmlFormat.NUnit;
 
@@ -46,17 +47,38 @@
         [Option("--fail-when-result-is-failed", Description = "Fails the program when the unit test result is 'Failed'.")]
         public bool FailWhenResultIsFailed { get; } = false;
 
+        /// <summary>
+        /// Gets or sets the output.
+        /// </summary>
+        /// <value>
+        /// The output.
+        /// </value>
+        [Option("-o|--output", Description = "Output file to write results. (Default output is Console)")]
+        public string Output { get; }
+
+        /// <summary>
+        /// Gets the template.
+        /// </summary>
+        /// <value>
+        /// The template.
+        /// </value>
+        [Option("-t|--template", Description = "The output template. Allowed values are: Summary, TestResult. (Default: Summary)")]
+        public OutputTemplateType Template { get; } = OutputTemplateType.Summary;  
+
         private int OnExecute()
         {
-            UnitTestResultParser unitTestResultParser = new UnitTestResultParser(Format);
-            TestRun testRun = unitTestResultParser.ParseXml(Path);
-
-            Console.WriteLine("Total tests: {0}. Passed: {1}. Failed: {2}. Skipped: {3}.", testRun.Total, testRun.Passed, testRun.Failed, testRun.Skipped);
-            Console.WriteLine("Test Run {0}.", testRun.Result);
-
-            if (FailWhenResultIsFailed && !testRun.IsSuccess)
+            ITestResultsOutputWriterFactory outputWriterFactory = new DefaultTestResultsOutputWriterFactory();
+            using (ITestResultsOutputWriter outputWriter = outputWriterFactory.Create(Output))
             {
-                return -1;
+                OutputTemplateManager outputTemplateManager = new OutputTemplateManager(Path, Format);
+                IOutputTemplateFactory outputTemplateFactory = outputTemplateManager.CreateOutputTemplateFactory();
+                IOutputTemplate outputTemplate = outputTemplateFactory.Create(Template);
+                outputTemplate.Write(outputWriter);
+
+                if (FailWhenResultIsFailed && !outputTemplateFactory.IsSuccess)
+                {
+                    return -1;
+                }
             }
 
             return 0;
