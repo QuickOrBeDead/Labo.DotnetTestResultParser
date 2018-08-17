@@ -70,7 +70,6 @@ namespace Labo.DotnetTestResultParser
 
         private int OnExecute()
         {
-            Debugger.Break();
             ITestResultsOutputWriterFactory outputWriterFactory = new DefaultTestResultsOutputWriterFactory();
             using (ITestResultsOutputWriter outputWriter = outputWriterFactory.Create(Output))
             {
