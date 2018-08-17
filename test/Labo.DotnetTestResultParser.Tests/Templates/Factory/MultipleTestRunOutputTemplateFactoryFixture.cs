@@ -39,34 +39,6 @@ namespace Labo.DotnetTestResultParser.Tests.Templates.Factory
             Assert.IsTrue(isSuccess);
         }
 
-        [Test]
-        public void CreateTestRunForResult_WhenAllTestRunAreSuccess_ShouldTestRunIsSuccessTrue()
-        {
-            //arrange
-            var testRuns = CreateTestRunsAllSuccess();
-            var factory = CreateTemplateFactory(testRuns);
-
-            //act
-            var testRun = factory.CreateTestRunForResult();
-
-            //assert
-            Assert.IsTrue(testRun.IsSuccess);
-        }
-
-        [Test]
-        public void CreateTestRunForResult_WhenOneSuccessAndOneUnscucess_ShouldTestRunIsSuccessFalse()
-        {
-            //arrange
-            var testRuns = CreateTestRunsOneSuccessOneUnsuccess();
-            var factory = CreateTemplateFactory(testRuns);
-
-            //act
-            var testRun = factory.CreateTestRunForResult();
-
-            //assert
-            Assert.IsFalse(testRun.IsSuccess);
-        }
-
         private static List<TestRun> CreateTestRunsAllSuccess()
         {
             var testRuns = new List<TestRun>() { new TestRun() { IsSuccess = true }, new TestRun() { IsSuccess = true } };

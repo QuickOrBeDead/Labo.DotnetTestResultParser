@@ -1,6 +1,7 @@
 ﻿namespace Labo.DotnetTestResultParser.Templates
 {
     using System;
+    using System.Linq;
 
     using Labo.DotnetTestResultParser.Model;
     using Labo.DotnetTestResultParser.Writers;
@@ -11,15 +12,16 @@
     /// <seealso cref="IOutputTemplate" />
     public sealed class TestRunResultOutputTemplate : IOutputTemplate
     {
-        private readonly TestRun _testRun;
+        private readonly TestRun[] _testRuns;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TestRunResultOutputTemplate"/> class.
+        /// Initializes a new instance of the <see cref="TestRunSummaryOutputTemplate"/> class.
         /// </summary>
-        /// <param name="testRun">The test run.</param>
-        public TestRunResultOutputTemplate(TestRun testRun)
+        /// <param name="testRuns">The test run.</param>
+        /// <exception cref="ArgumentNullException">testRun</exception>
+        public TestRunResultOutputTemplate(params TestRun[] testRuns)
         {
-            _testRun = testRun ?? throw new ArgumentNullException(nameof(testRun));
+            _testRuns = testRuns ?? throw new ArgumentNullException(nameof(testRuns));
         }
 
         /// <inheritdoc />
@@ -30,7 +32,7 @@
                 throw new ArgumentNullException(nameof(outputWriter));
             }
 
-            outputWriter.WriteLine(_testRun.Result);
+            outputWriter.WriteLine(_testRuns.All(x => x.IsSuccess) ? TestRunResult.Passed : TestRunResult.Failed);
         }
     }
 }
