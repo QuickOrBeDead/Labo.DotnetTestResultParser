@@ -39,7 +39,7 @@ namespace Labo.DotnetTestResultParser.Templates.Factory
                 case OutputTemplateType.Summary:
                     return new TestRunSummaryOutputTemplate(_testRuns.ToArray());
                 case OutputTemplateType.TestResult:
-                    return new TestRunResultOutputTemplate(_testRuns.ToArray());
+                    return new TestRunResultOutputTemplate(CreateTestRunForResult());
                 default:
                     throw new ArgumentOutOfRangeException(nameof(outputTemplateType), outputTemplateType, null);
             }
@@ -49,5 +49,7 @@ namespace Labo.DotnetTestResultParser.Templates.Factory
         {
             return _testRuns.All(testRun => testRun.IsSuccess != false);
         }
+
+        internal TestRun CreateTestRunForResult() => new TestRun() { Result = IsTestRunsSucess() ? "Passed" : "Failed" };
     }
 }

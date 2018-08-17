@@ -15,21 +15,68 @@ namespace Labo.DotnetTestResultParser.Tests.Templates.Factory
         public void IsTestRunSucess_WhenThereIsOneFalseTestRun_ShoudIsSucessFalse()
         {
             //arrange
-            var testRuns = new List<TestRun>() { new TestRun() { IsSuccess = true }, new TestRun() { IsSuccess = false } };
+            var testRuns = CreateTestRunsOneSuccessOneUnsuccess();
             var factory = CreateTemplateFactory(testRuns);
 
             //act
-            Assert.IsFalse(factory.IsSuccess);
+            var factoryIsSuccess = factory.IsSuccess;
+
+            //arrange
+            Assert.IsFalse(factoryIsSuccess);
         }
+        
         [Test]
-        public void IsTestRunSucess_WhenAllTestRunAreSuccess_ShoudIsSucessTrue()
+        public void IsTestRunSucess_WhenAllTestRunAreSuccess_ShoudIsSuccessTrue()
         {
             //arrange
-            var testRuns = new List<TestRun>() { new TestRun() { IsSuccess = true }, new TestRun() { IsSuccess = true } };
+            var testRuns = CreateTestRunsAllSuccess();
             var factory = CreateTemplateFactory(testRuns);
 
             //act
-            Assert.IsTrue(factory.IsSuccess);
+            var isSuccess = factory.IsSuccess;
+
+            //assert
+            Assert.IsTrue(isSuccess);
+        }
+
+        [Test]
+        public void CreateTestRunForResult_WhenAllTestRunAreSuccess_ShouldTestRunIsSuccessTrue()
+        {
+            //arrange
+            var testRuns = CreateTestRunsAllSuccess();
+            var factory = CreateTemplateFactory(testRuns);
+
+            //act
+            var testRun = factory.CreateTestRunForResult();
+
+            //assert
+            Assert.IsTrue(testRun.IsSuccess);
+        }
+
+        [Test]
+        public void CreateTestRunForResult_WhenOneSuccessAndOneUnscucess_ShouldTestRunIsSuccessFalse()
+        {
+            //arrange
+            var testRuns = CreateTestRunsOneSuccessOneUnsuccess();
+            var factory = CreateTemplateFactory(testRuns);
+
+            //act
+            var testRun = factory.CreateTestRunForResult();
+
+            //assert
+            Assert.IsFalse(testRun.IsSuccess);
+        }
+
+        private static List<TestRun> CreateTestRunsAllSuccess()
+        {
+            var testRuns = new List<TestRun>() { new TestRun() { IsSuccess = true }, new TestRun() { IsSuccess = true } };
+            return testRuns;
+        }
+
+        private static List<TestRun> CreateTestRunsOneSuccessOneUnsuccess()
+        {
+            var testRuns = new List<TestRun>() { new TestRun() { IsSuccess = true }, new TestRun() { IsSuccess = false } };
+            return testRuns;
         }
 
         private static MultipleTestRunOutputTemplateFactory CreateTemplateFactory(IList<TestRun> testRuns)

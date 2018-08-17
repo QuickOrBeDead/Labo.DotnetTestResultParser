@@ -1,4 +1,5 @@
-﻿using Labo.DotnetTestResultParser.Parsers;
+﻿using System.Diagnostics;
+using Labo.DotnetTestResultParser.Parsers;
 
 namespace Labo.DotnetTestResultParser
 {
@@ -69,6 +70,7 @@ namespace Labo.DotnetTestResultParser
 
         private int OnExecute()
         {
+            Debugger.Break();
             ITestResultsOutputWriterFactory outputWriterFactory = new DefaultTestResultsOutputWriterFactory();
             using (ITestResultsOutputWriter outputWriter = outputWriterFactory.Create(Output))
             {
