@@ -11,15 +11,15 @@
     /// <seealso cref="IOutputTemplate" />
     public sealed class TestRunResultOutputTemplate : IOutputTemplate
     {
-        private readonly TestRun _testRun;
+        private readonly TestRun[] _testRuns;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TestRunResultOutputTemplate"/> class.
         /// </summary>
         /// <param name="testRun">The test run.</param>
-        public TestRunResultOutputTemplate(TestRun testRun)
+        public TestRunResultOutputTemplate(params TestRun[] testRun)
         {
-            _testRun = testRun ?? throw new ArgumentNullException(nameof(testRun));
+            _testRuns = testRun ?? throw new ArgumentNullException(nameof(testRun));
         }
 
         /// <inheritdoc />
@@ -30,7 +30,10 @@
                 throw new ArgumentNullException(nameof(outputWriter));
             }
 
-            outputWriter.WriteLine(_testRun.Result);
+            foreach (var testRun in _testRuns)
+            {
+                outputWriter.WriteLine(testRun.Result);
+            }
         }
     }
 }

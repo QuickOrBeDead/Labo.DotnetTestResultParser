@@ -19,6 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="_testresultmultiplexmls\Organon.ExceptionHandling.AspNetCore.Tests.unittest.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="_testresultmultiplexmls\Organon.ExceptionHandling.AspNetCore.Tests.unittest2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="_testresultxmls\Organon.ExceptionHandling.AspNetCore.Tests.unittest.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

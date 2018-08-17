@@ -6,7 +6,7 @@
     /// <summary>
     /// The test run results parser class.
     /// </summary>
-    public sealed class TestRunResultParser
+    public sealed class TestRunResultParser : ITestRunResultParser
     {
         private readonly ITestResultsParser _testResultsParser;
 

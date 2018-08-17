@@ -32,6 +32,7 @@
             int passed = Convert.ToInt32(GetAttributeValue(xmlDocumentRoot, "passed"), CultureInfo.InvariantCulture);
             int failed = Convert.ToInt32(GetAttributeValue(xmlDocumentRoot, "failed"), CultureInfo.InvariantCulture);
             int skipped = Convert.ToInt32(GetAttributeValue(xmlDocumentRoot, "skipped"), CultureInfo.InvariantCulture);
+            string name = GetAttributeValue(xmlDocumentRoot, "id");
 
             return new TestRun
                        {
@@ -40,7 +41,8 @@
                            Skipped = skipped,
                            Passed = passed,
                            Failed = failed,
-                           IsSuccess = string.Equals("Passed", result, StringComparison.OrdinalIgnoreCase)
+                           IsSuccess = string.Equals("Passed", result, StringComparison.OrdinalIgnoreCase),
+                           Name = name
                        };
         }
 

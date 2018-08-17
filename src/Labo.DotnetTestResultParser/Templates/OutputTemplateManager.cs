@@ -1,4 +1,7 @@
-﻿namespace Labo.DotnetTestResultParser.Templates
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Labo.DotnetTestResultParser.Templates
 {
     using System;
     using System.IO;
@@ -10,18 +13,26 @@
     /// <summary>
     /// The output template manager class.
     /// </summary>
-    public sealed class OutputTemplateManager
+    public sealed partial class OutputTemplateManager
     {
         private readonly string _xmlPath;
 
-        private readonly UnitTestResultXmlFormat _format;
+        private readonly ITestRunResultParser _testRunResultParser;
+        private readonly IDirectoryWrapper _directoryWrapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OutputTemplateManager"/> class.
         /// </summary>
         /// <param name="xmlPath">The XML path.</param>
-        /// <param name="format">The format.</param>
-        public OutputTemplateManager(string xmlPath, UnitTestResultXmlFormat format)
+        /// <param name="runResultParser">The run result parser.</param>
+        /// <param name="directoryWrapper">The directory wrapper.</param>
+        /// <exception cref="ArgumentException">Value cannot be null or whitespace. - xmlPath</exception>
+        /// <exception cref="ArgumentNullException">
+        /// runResultParser
+        /// or
+        /// directoryWrapper
+        /// </exception>
+        public OutputTemplateManager(string xmlPath, ITestRunResultParser runResultParser, IDirectoryWrapper directoryWrapper)
         {
             if (string.IsNullOrWhiteSpace(xmlPath))
             {
@@ -29,7 +40,8 @@
             }
 
             _xmlPath = xmlPath;
-            _format = format;
+            _testRunResultParser = runResultParser ?? throw new ArgumentNullException(nameof(runResultParser));
+            _directoryWrapper = directoryWrapper ?? throw new ArgumentNullException(nameof(directoryWrapper));
         }
 
         /// <summary>
@@ -38,12 +50,37 @@
         /// <returns></returns>
         public IOutputTemplateFactory CreateOutputTemplateFactory()
         {
-            // TODO: Add MultipleTestRunOutputTemplateFactory for wildcard path that results more than one file. Directory.EnumerateFiles(_xmlPath)
+            var isDirectory = _directoryWrapper.IsDirectory(_xmlPath);
+            
+            if (isDirectory)
+            {
+                var filePaths = _directoryWrapper.EnumerateFiles(_xmlPath);
+                return CreateMultipleTestRunOutputTemplateFactory(filePaths);
+            }
+            else
+            {
+                var testRun = _testRunResultParser.ParseXml(_xmlPath);
+                return new TestRunOutputTemplateFactory(testRun);
+            }
+        }
 
-            TestRunResultParser unitTestRunResultParser = new TestRunResultParser(_format);
-            TestRun testRun = unitTestRunResultParser.ParseXml(_xmlPath);
+        private IOutputTemplateFactory CreateMultipleTestRunOutputTemplateFactory(IEnumerable<string> filePaths)
+        {
+            var testRuns = CreateTestRuns(filePaths);
+            return new MultipleTestRunOutputTemplateFactory(testRuns);
+        }
 
-            return new TestRunOutputTemplateFactory(testRun);
+        internal IEnumerable<TestRun> CreateTestRuns(IEnumerable<string> filePaths)
+        {
+            IList<TestRun> testRuns = new List<TestRun>();
+
+            foreach (var filePath in filePaths)
+            {
+                var testRun = _testRunResultParser.ParseXml(filePath);
+                testRuns.Add(testRun);
+            }
+
+            return testRuns;
         }
     }
 }

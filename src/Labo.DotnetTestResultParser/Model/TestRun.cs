@@ -52,5 +52,13 @@
         ///   <c>true</c> if this instance is success; otherwise, <c>false</c>.
         /// </value>
         public bool IsSuccess { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public string Name { get; set; }
     }
 }
