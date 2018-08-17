@@ -29,7 +29,7 @@ namespace Labo.DotnetTestResultParser.Tests
         public void CreateOutputTemplateFactory_WhenThereIsMoreThanOneFileInPath_ShouldReturnMultipleTestRunOutputTemplateFactory()
         {
             //arrange
-            string xmlPath = "/test/*.xml";
+            string xmlPath = "/test2/*.xml";
             _directoryWrapper.IsDirectory(xmlPath).Returns(true);
             var outputTemplateManager = CreateOutputTemplateManager(xmlPath);
             _testRunResultParser.ParseXml(xmlPath).Returns(new TestRun());
