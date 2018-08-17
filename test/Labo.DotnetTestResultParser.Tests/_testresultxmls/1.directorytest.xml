@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" duration="0.80899999999999994" testcasecount="9" total="9" passed="8" failed="1" skipped="0" result="Failed" start-time="2018-08-10T 13:01:51Z" end-time="2018-08-10T 13:01:54Z">
+  <test-suite type="Assembly" name="Organon.ExceptionHandling.AspNetCore.Tests.dll" fullname="/test/Organon.ExceptionHandling.AspNetCore.Tests/bin/Debug/netcoreapp2.1/Organon.ExceptionHandling.AspNetCore.Tests.dll" total="9" passed="8" failed="1" skipped="0" duration="0.80899999999999994" errors="0" result="Failed">
+    <errors />
+    <test-suite type="TestFixture" name="ExceptionHandlingMiddlewareFixture" fullname="Organon.ExceptionHandling.AspNetCore.Tests.ExceptionHandlingMiddlewareFixture" total="9" passed="8" failed="1" skipped="0" result="Failed" duration="0.80899999999999994">
+      <test-case name="ClearCacheHeaders" fullname="Organon.ExceptionHandling.AspNetCore.Tests.ExceptionHandlingMiddlewareFixture.ClearCacheHeaders" result="Passed" duration="0.348" asserts="0" />
+      <test-case name="CreateApiResponse(True)" fullname="Organon.ExceptionHandling.AspNetCore.Tests.ExceptionHandlingMiddlewareFixture.CreateApiResponse" result="Passed" duration="0.048" asserts="0" />
+      <test-case name="CreateApiResponse(False)" fullname="Organon.ExceptionHandling.AspNetCore.Tests.ExceptionHandlingMiddlewareFixture.CreateApiResponse" result="Passed" duration="0.005" asserts="0" />
+      <test-case name="GetUrl" fullname="Organon.ExceptionHandling.AspNetCore.Tests.ExceptionHandlingMiddlewareFixture.GetUrl" result="Passed" duration="0.001" asserts="0" />
+      <test-case name="Invoke_CallErrorHandlerException_WhenRequestDelegateAndHandleExceptionThrowsException" fullname="Organon.ExceptionHandling.AspNetCore.Tests.ExceptionHandlingMiddlewareFixture.Invoke_CallErrorHandlerException_WhenRequestDelegateAndHandleExceptionThrowsException" result="Passed" duration="0.071" asserts="0" />
+      <test-case name="Invoke_CallHandleException_WhenRequestDelegateThrowsExceptionAndRequestHasNotStarted" fullname="Organon.ExceptionHandling.AspNetCore.Tests.ExceptionHandlingMiddlewareFixture.Invoke_CallHandleException_WhenRequestDelegateThrowsExceptionAndRequestHasNotStarted" result="Passed" duration="0.256" asserts="0" />
+      <test-case name="Invoke_NotCallHandleExceptionAndReThrowException_WhenRequestDelegateThrowsExceptionAndRequestHasStarted" fullname="Organon.ExceptionHandling.AspNetCore.Tests.ExceptionHandlingMiddlewareFixture.Invoke_NotCallHandleExceptionAndReThrowException_WhenRequestDelegateThrowsExceptionAndRequestHasStarted" result="Passed" duration="0.004" asserts="0" />
+      <test-case name="Invoke_ShouldNotCallHandleException_WhenRequestDelegateDoesNotThrowException" fullname="Organon.ExceptionHandling.AspNetCore.Tests.ExceptionHandlingMiddlewareFixture.Invoke_ShouldNotCallHandleException_WhenRequestDelegateDoesNotThrowException" result="Passed" duration="0.003" asserts="0" />
+      <test-case name="WriteExceptionResponse" fullname="Organon.ExceptionHandling.AspNetCore.Tests.ExceptionHandlingMiddlewareFixture.WriteExceptionResponse" result="Failed" duration="0.073" asserts="0">
+        <failure>
+          <message>  Expected: 208
+  But was:  207
+</message>
+          <stack-trace>   at Organon.ExceptionHandling.AspNetCore.Tests.ExceptionHandlingMiddlewareFixture.WriteExceptionResponse() in /test/Organon.ExceptionHandling.AspNetCore.Tests/ExceptionHandlingMiddlewareFixture.cs:line 191
+</stack-trace>
+        </failure>
+      </test-case>
+    </test-suite>
+  </test-suite>
+</test-run>

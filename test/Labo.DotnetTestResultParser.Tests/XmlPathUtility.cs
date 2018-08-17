@@ -1,9 +1,9 @@
-﻿using System.IO;
-using System.Reflection;
-
-namespace Labo.DotnetTestResultParser.Tests.Parsers
+﻿namespace Labo.DotnetTestResultParser.Tests
 {
-    public class XmlPathUtility
+    using System.IO;
+    using System.Reflection;
+
+    public static class XmlPathUtility
     {
         public static string GetTestXmlPath(string xmlPath)
         {

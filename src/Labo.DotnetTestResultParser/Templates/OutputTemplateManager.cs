@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace Labo.DotnetTestResultParser.Templates
+﻿namespace Labo.DotnetTestResultParser.Templates
 {
     using System;
-    using System.IO;
+    using System.Collections.Generic;
+    using System.Linq;
 
     using Labo.DotnetTestResultParser.Model;
     using Labo.DotnetTestResultParser.Parsers;
@@ -13,7 +11,7 @@ namespace Labo.DotnetTestResultParser.Templates
     /// <summary>
     /// The output template manager class.
     /// </summary>
-    public sealed partial class OutputTemplateManager
+    public sealed class OutputTemplateManager
     {
         private readonly string _xmlPath;
 
@@ -50,11 +48,10 @@ namespace Labo.DotnetTestResultParser.Templates
         /// <returns></returns>
         public IOutputTemplateFactory CreateOutputTemplateFactory()
         {
-            var isDirectory = _directoryWrapper.IsDirectory(_xmlPath);
-            
-            if (isDirectory)
+            IList<string> filePaths = _directoryWrapper.EnumerateFiles(_xmlPath).ToList();
+
+            if (filePaths.Count > 1)
             {
-                var filePaths = _directoryWrapper.EnumerateFiles(_xmlPath);
                 return CreateMultipleTestRunOutputTemplateFactory(filePaths);
             }
             else
@@ -64,19 +61,20 @@ namespace Labo.DotnetTestResultParser.Templates
             }
         }
 
-        private IOutputTemplateFactory CreateMultipleTestRunOutputTemplateFactory(IEnumerable<string> filePaths)
+        private IOutputTemplateFactory CreateMultipleTestRunOutputTemplateFactory(IList<string> filePaths)
         {
-            var testRuns = CreateTestRuns(filePaths);
+            IList<TestRun> testRuns = CreateTestRuns(filePaths);
             return new MultipleTestRunOutputTemplateFactory(testRuns);
         }
 
-        internal IEnumerable<TestRun> CreateTestRuns(IEnumerable<string> filePaths)
+        internal IList<TestRun> CreateTestRuns(IList<string> filePaths)
         {
             IList<TestRun> testRuns = new List<TestRun>();
 
-            foreach (var filePath in filePaths)
+            for (int i = 0; i < filePaths.Count; i++)
             {
-                var testRun = _testRunResultParser.ParseXml(filePath);
+                string filePath = filePaths[i];
+                TestRun testRun = _testRunResultParser.ParseXml(filePath);
                 testRuns.Add(testRun);
             }
 

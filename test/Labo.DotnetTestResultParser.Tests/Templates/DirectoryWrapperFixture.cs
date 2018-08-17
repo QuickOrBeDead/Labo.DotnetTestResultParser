@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
+
 using Labo.DotnetTestResultParser.Templates;
-using Labo.DotnetTestResultParser.Tests.Parsers;
+
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
 namespace Labo.DotnetTestResultParser.Tests.Templates
 {
+    using System.Collections.Generic;
+    using System.IO;
+
     [TestFixture]
     public class DirectoryWrapperFixture
     {
@@ -51,6 +51,35 @@ namespace Labo.DotnetTestResultParser.Tests.Templates
 
             //assert
             Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void EnumerateFiles_ShouldSearchFilesByWildcardPattern()
+        {
+            // Arrange
+            string testXmlPath = XmlPathUtility.GetTestXmlPath("*.directorytest.xml");
+
+            // Act
+            IList<string> files = _directoryWrapper.EnumerateFiles(testXmlPath).ToList();
+            
+            // Assert
+            Assert.AreEqual(2, files.Count);
+            Assert.AreEqual(true, files.Contains(XmlPathUtility.GetTestXmlPath("1.directorytest.xml")));
+            Assert.AreEqual(true, files.Contains(XmlPathUtility.GetTestXmlPath("2.directorytest.xml")));
+        }
+
+        [Test]
+        public void EnumerateFiles_ShouldSearchFilesByExactName()
+        {
+            // Arrange
+            string testXmlPath = XmlPathUtility.GetTestXmlPath("1.directorytest.xml");
+
+            // Act
+            IList<string> files = _directoryWrapper.EnumerateFiles(testXmlPath).ToList();
+
+            // Assert
+            Assert.AreEqual(1, files.Count);
+            Assert.AreEqual(true, files.Contains(XmlPathUtility.GetTestXmlPath("1.directorytest.xml")));
         }
     }
 }

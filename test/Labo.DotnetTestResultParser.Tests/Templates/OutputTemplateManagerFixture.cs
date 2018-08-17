@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Labo.DotnetTestResultParser.Model;
-using Labo.DotnetTestResultParser.Parsers;
-using Labo.DotnetTestResultParser.Templates;
-using Labo.DotnetTestResultParser.Templates.Factory;
-using Labo.DotnetTestResultParser.Tests.Parsers;
-using NSubstitute;
-using NUnit.Framework;
-
-namespace Labo.DotnetTestResultParser.Tests
+﻿namespace Labo.DotnetTestResultParser.Tests.Templates
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using Labo.DotnetTestResultParser.Model;
+    using Labo.DotnetTestResultParser.Parsers;
+    using Labo.DotnetTestResultParser.Templates;
+    using Labo.DotnetTestResultParser.Templates.Factory;
+    using Labo.DotnetTestResultParser.Tests.Parsers;
+
+    using NSubstitute;
+
+    using NUnit.Framework;
+
     [TestFixture]
     public class OutputTemplateManagerFixture
     {
@@ -30,7 +31,7 @@ namespace Labo.DotnetTestResultParser.Tests
         {
             //arrange
             string xmlPath = "/test/*.xml";
-            _directoryWrapper.IsDirectory(xmlPath).Returns(true);
+            _directoryWrapper.EnumerateFiles(xmlPath).Returns(new List<string>{ "1.xml", "2.xml" });
             var outputTemplateManager = CreateOutputTemplateManager(xmlPath);
             _testRunResultParser.ParseXml(xmlPath).Returns(new TestRun());
 
@@ -46,7 +47,7 @@ namespace Labo.DotnetTestResultParser.Tests
         {
             //arrange
             string xmlPath = "/test/test.xml";
-            _directoryWrapper.EnumerateFiles(xmlPath).Returns(new List<string>() { xmlPath });
+            _directoryWrapper.EnumerateFiles(xmlPath).Returns(new List<string> { xmlPath });
             _testRunResultParser.ParseXml(xmlPath).Returns(new TestRun());
             OutputTemplateManager outputTemplateManager = CreateOutputTemplateManager(xmlPath);
 
@@ -68,7 +69,7 @@ namespace Labo.DotnetTestResultParser.Tests
             var testRuns = outputTemplateManager.CreateTestRuns(filePaths);
 
             //arrange
-            Assert.AreEqual(2, testRuns.Count());
+            Assert.AreEqual(2, testRuns.Count);
         }
 
         [Test]
@@ -77,7 +78,7 @@ namespace Labo.DotnetTestResultParser.Tests
             //arrange
             OutputTemplateManager outputTemplateManager = CreateOutputTemplateManager();
             var filePath = "a";
-            var filePaths = new List<string>() { filePath };
+            var filePaths = new List<string> { filePath };
 
             //act
             var testRuns = outputTemplateManager.CreateTestRuns(filePaths);
