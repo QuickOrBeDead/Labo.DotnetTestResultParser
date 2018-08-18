@@ -55,6 +55,56 @@ $ dotnet labodotnettestresultsparser <path> -f NUnit -o <output.txt> -t TestResu
 
 ```
 
+Output:
+
+```
+$ Passed
+
+```
+
+### Writes Only the Test Result  Text (Passed | Failed) for Multiple Unit Test Result Xmls to the Output Text
+
+```
+$ dotnet labodotnettestresultsparser "/testresults/*.unittest.xml" -f NUnit -o <output.txt> -t TestResult
+
+```
+
+Output:
+
+```
+$ Passed
+
+```
+
+### Bash script that checks Unit Test Results for multiple xmls
+
+```bash
+dotnet labodotnettestresultsparser "/testresults/*.unittest.xml" -f NUnit -o /testresults/result.txt -t TestResult
+
+if [ ! -f /testresults/result.txt ]; then
+    echo "Test Result File not found!"
+    exit 1
+fi
+
+result=$(head -n 1 /testresults/result.txt)
+
+if [ "$result" == "Failed" ]
+then
+    echo "Unit Tests Failed!"
+    exit 1
+else
+   echo "Unit Tests Passed!"
+fi
+
+```
+
+Output:
+
+```
+$ Passed
+
+```
+
 ## Build
 
 ```
@@ -67,7 +117,7 @@ cd Labo.DotnetTestResultParser/src/Labo.DotnetTestResultParser
 dotnet pack -c release -o nupkg
 ```
 
-Output is located in ```src/Labo.DotnetTestResultParser/nupkg```
+Output is located at ```src/Labo.DotnetTestResultParser/nupkg```
 
 ### Uninstall
 
