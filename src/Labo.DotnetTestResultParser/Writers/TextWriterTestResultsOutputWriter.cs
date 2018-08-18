@@ -33,7 +33,7 @@
         }
 
         #region IDisposable Support
-        private bool _disposed = false; // To detect redundant calls
+        private bool _disposed; // To detect redundant calls
 
         void Dispose(bool disposing)
         {

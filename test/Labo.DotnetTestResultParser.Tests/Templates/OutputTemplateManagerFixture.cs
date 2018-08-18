@@ -1,13 +1,12 @@
 ﻿namespace Labo.DotnetTestResultParser.Tests.Templates
 {
     using System.Collections.Generic;
-    using System.Linq;
 
+    using Labo.DotnetTestResultParser.IO;
     using Labo.DotnetTestResultParser.Model;
     using Labo.DotnetTestResultParser.Parsers;
     using Labo.DotnetTestResultParser.Templates;
     using Labo.DotnetTestResultParser.Templates.Factory;
-    using Labo.DotnetTestResultParser.Tests.Parsers;
 
     using NSubstitute;
 
@@ -16,96 +15,96 @@
     [TestFixture]
     public class OutputTemplateManagerFixture
     {
-        private IDirectoryWrapper _directoryWrapper;
+        private IFileSystemManager _fileSystemManager;
         private ITestRunResultParser _testRunResultParser;
 
         [SetUp]
         public void SetUp()
         {
-            _directoryWrapper = Substitute.For<IDirectoryWrapper>();
+            _fileSystemManager = Substitute.For<IFileSystemManager>();
             _testRunResultParser = Substitute.For<ITestRunResultParser>();
         }
 
         [Test]
         public void CreateOutputTemplateFactory_WhenThereIsMoreThanOneFileInPath_ShouldReturnMultipleTestRunOutputTemplateFactory()
         {
-            //arrange
+            // Arrange
             string xmlPath = "/test/*.xml";
-            _directoryWrapper.EnumerateFiles(xmlPath).Returns(new List<string>{ "1.xml", "2.xml" });
+            _fileSystemManager.EnumerateFiles(xmlPath).Returns(new List<string>{ "1.xml", "2.xml" });
             var outputTemplateManager = CreateOutputTemplateManager(xmlPath);
             _testRunResultParser.ParseXml(xmlPath).Returns(new TestRun());
 
-            //act
+            // Act
             var outputTemplateFactory = outputTemplateManager.CreateOutputTemplateFactory();
 
-            //assert
+            // Assert
             Assert.AreEqual(typeof(MultipleTestRunOutputTemplateFactory), outputTemplateFactory.GetType());
         }
 
         [Test]
         public void CreateOutputTemplateFactory_WhenThereIsOneFileInPath_ShouldReturnMultipleTestRunOutputTemplateFactory()
         {
-            //arrange
+            // Arrange
             string xmlPath = "/test/test.xml";
-            _directoryWrapper.EnumerateFiles(xmlPath).Returns(new List<string> { xmlPath });
+            _fileSystemManager.EnumerateFiles(xmlPath).Returns(new List<string> { xmlPath });
             _testRunResultParser.ParseXml(xmlPath).Returns(new TestRun());
             OutputTemplateManager outputTemplateManager = CreateOutputTemplateManager(xmlPath);
 
-            //act
+            // Act
             var outputTemplateFactory = outputTemplateManager.CreateOutputTemplateFactory();
 
-            //assert
+            // Assert
             Assert.AreEqual(outputTemplateFactory.GetType(), typeof(TestRunOutputTemplateFactory));
         }
 
         [Test]
         public void CreateTestRuns_WhenThereAreTwoFilePaths_ShouldTwoTestRun()
         {
-            //arrange
+            // Arrange
             OutputTemplateManager outputTemplateManager = CreateOutputTemplateManager();
-            var filePaths = new List<string>() { "a", "b" };
+            var filePaths = new List<string> { "a", "b" };
 
-            //act
+            // Act
             var testRuns = outputTemplateManager.CreateTestRuns(filePaths);
 
-            //arrange
+            // Arrange
             Assert.AreEqual(2, testRuns.Count);
         }
 
         [Test]
         public void CreateTestRuns_WhenThereIsOneFilePath_ShouldTestRunResultParserReceivedOnce()
         {
-            //arrange
+            // Arrange
             OutputTemplateManager outputTemplateManager = CreateOutputTemplateManager();
             var filePath = "a";
             var filePaths = new List<string> { filePath };
 
-            //act
+            // Act
             var testRuns = outputTemplateManager.CreateTestRuns(filePaths);
 
-            //arrange
+            // Arrange
             _testRunResultParser.Received(1).ParseXml(filePath);
         }
 
         [Test]
         public void CreateOutputTemplateFactory_WhenThereAreMultipleFileInDirectory_ShouldReturnMultipleTestRunOutputTemplateFactory()
         {
-            //arrange
+            // Arrange
             var path =  XmlPathUtility.GetTestXmlFolderPath();
-            _directoryWrapper = new DirectoryWrapper();
+            _fileSystemManager = new DefaultFileSystemManager();
             OutputTemplateManager outputTemplateManager = CreateOutputTemplateManager(path);
 
-            //act
+            // Act
             IOutputTemplateFactory factory = outputTemplateManager.CreateOutputTemplateFactory();
             
-            //assert
+            // Assert
             Assert.AreEqual(typeof(MultipleTestRunOutputTemplateFactory), factory.GetType());
         }
         
         private OutputTemplateManager CreateOutputTemplateManager(string xmlPath = "a")
         {
             OutputTemplateManager outputTemplateManager =
-                new OutputTemplateManager(xmlPath, _testRunResultParser, _directoryWrapper);
+                new OutputTemplateManager(xmlPath, _testRunResultParser, _fileSystemManager);
             return outputTemplateManager;
         }
     }

@@ -1,7 +1,7 @@
-﻿using Labo.DotnetTestResultParser.Model;
-
-namespace Labo.DotnetTestResultParser.Parsers
+﻿namespace Labo.DotnetTestResultParser.Parsers
 {
+    using Labo.DotnetTestResultParser.Model;
+
     /// <summary>
     /// The test runner parser
     /// </summary>

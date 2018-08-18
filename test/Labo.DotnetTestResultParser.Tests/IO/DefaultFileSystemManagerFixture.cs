@@ -1,55 +1,59 @@
-﻿using System.Linq;
-
-using Labo.DotnetTestResultParser.Templates;
-
-using NUnit.Framework;
-
-namespace Labo.DotnetTestResultParser.Tests.Templates
+﻿namespace Labo.DotnetTestResultParser.Tests.IO
 {
     using System.Collections.Generic;
-    using System.IO;
+    using System.Linq;
+
+    using Labo.DotnetTestResultParser.IO;
+
+    using NUnit.Framework;
 
     [TestFixture]
-    public class DirectoryWrapperFixture
+    public class DefaultFileSystemManagerFixture
     {
-        private DirectoryWrapper _directoryWrapper;
+        private DefaultFileSystemManager _fileSystemManager;
 
         [SetUp]
         public void SetUp()
         {
-            _directoryWrapper = new DirectoryWrapper();
+            _fileSystemManager = new DefaultFileSystemManager();
         }
 
         [Test]
         public void EnumerateFiles_WhenThereAre2FilesInDirectory_ShouldListHas2Items()
         {
-            //act
+            // Arrange
             var path = XmlPathUtility.GetTestXmlFolderPath();
-            var fileList = _directoryWrapper.EnumerateFiles(path);
 
-            //assert
+            // Act
+            var fileList = _fileSystemManager.EnumerateFiles(path);
+
+            // Assert
             Assert.AreEqual(2, fileList.Count());
         }
 
         [Test]
         public void IsDirectory_WhenItIsADirectory_ShouldReturnTrue()
         {
-            //act
+            // Arrange
             var path = XmlPathUtility.GetTestXmlFolderPath();
-            var result =_directoryWrapper.IsDirectory(path);
 
-            //assert
+            // Act
+            var result =_fileSystemManager.IsDirectory(path);
+
+            // Assert
             Assert.IsTrue(result);
         }
 
         [Test]
         public void IsDirectory_WhenItIsAFile_ShouldReturnFalse()
         {
-            //act
+            // Arrange
             var path = XmlPathUtility.GetTestXmlPath("Organon.ExceptionHandling.AspNetCore.Tests.unittest.xml");
-            var result = _directoryWrapper.IsDirectory(path);
 
-            //assert
+            // Act
+            var result = _fileSystemManager.IsDirectory(path);
+
+            // Assert
             Assert.IsFalse(result);
         }
 
@@ -60,7 +64,7 @@ namespace Labo.DotnetTestResultParser.Tests.Templates
             string testXmlPath = XmlPathUtility.GetTestXmlPath("*.directorytest.xml");
 
             // Act
-            IList<string> files = _directoryWrapper.EnumerateFiles(testXmlPath).ToList();
+            IList<string> files = _fileSystemManager.EnumerateFiles(testXmlPath).ToList();
             
             // Assert
             Assert.AreEqual(2, files.Count);
@@ -75,7 +79,7 @@ namespace Labo.DotnetTestResultParser.Tests.Templates
             string testXmlPath = XmlPathUtility.GetTestXmlPath("1.directorytest.xml");
 
             // Act
-            IList<string> files = _directoryWrapper.EnumerateFiles(testXmlPath).ToList();
+            IList<string> files = _fileSystemManager.EnumerateFiles(testXmlPath).ToList();
 
             // Assert
             Assert.AreEqual(1, files.Count);

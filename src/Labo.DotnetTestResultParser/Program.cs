@@ -1,12 +1,11 @@
-﻿using System.Diagnostics;
-using Labo.DotnetTestResultParser.Parsers;
-
-namespace Labo.DotnetTestResultParser
+﻿namespace Labo.DotnetTestResultParser
 {
     using System.ComponentModel.DataAnnotations;
     using System.Reflection;
 
+    using Labo.DotnetTestResultParser.IO;
     using Labo.DotnetTestResultParser.Model;
+    using Labo.DotnetTestResultParser.Parsers;
     using Labo.DotnetTestResultParser.Templates;
     using Labo.DotnetTestResultParser.Templates.Factory;
     using Labo.DotnetTestResultParser.Writers;
@@ -73,7 +72,7 @@ namespace Labo.DotnetTestResultParser
             ITestResultsOutputWriterFactory outputWriterFactory = new DefaultTestResultsOutputWriterFactory();
             using (ITestResultsOutputWriter outputWriter = outputWriterFactory.Create(Output))
             {
-                OutputTemplateManager outputTemplateManager = new OutputTemplateManager(Path, new TestRunResultParser(Format), new DirectoryWrapper());
+                OutputTemplateManager outputTemplateManager = new OutputTemplateManager(Path, new TestRunResultParser(Format), new DefaultFileSystemManager());
                 IOutputTemplateFactory outputTemplateFactory = outputTemplateManager.CreateOutputTemplateFactory();
                 IOutputTemplate outputTemplate = outputTemplateFactory.Create(Template);
                 outputTemplate.Write(outputWriter);

@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Labo.DotnetTestResultParser.Model;
-
-namespace Labo.DotnetTestResultParser.Templates.Factory
+﻿namespace Labo.DotnetTestResultParser.Templates.Factory
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Labo.DotnetTestResultParser.Model;
+
     /// <summary>
     /// The output template multiple factory interface
     /// </summary>
-    /// <seealso cref="Labo.DotnetTestResultParser.Templates.Factory.IOutputTemplateFactory" />
+    /// <seealso cref="IOutputTemplateFactory" />
     public sealed class MultipleTestRunOutputTemplateFactory : IOutputTemplateFactory
     {
         /// <summary>
@@ -17,7 +17,7 @@ namespace Labo.DotnetTestResultParser.Templates.Factory
         /// <value>
         /// The test runs.
         /// </value>
-        private IEnumerable<TestRun> _testRuns;
+        private readonly IEnumerable<TestRun> _testRuns;
 
         /// <inheritdoc />
         public bool IsSuccess => IsTestRunsSucess();
@@ -28,7 +28,7 @@ namespace Labo.DotnetTestResultParser.Templates.Factory
         /// <param name="testRuns">The test runs.</param>
         public MultipleTestRunOutputTemplateFactory(IEnumerable<TestRun> testRuns)
         {
-            _testRuns = testRuns;
+            _testRuns = testRuns ?? throw new ArgumentNullException(nameof(testRuns));
         }
 
         /// <inheritdoc />

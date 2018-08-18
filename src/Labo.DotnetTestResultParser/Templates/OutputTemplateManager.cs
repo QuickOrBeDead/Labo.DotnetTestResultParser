@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using Labo.DotnetTestResultParser.IO;
     using Labo.DotnetTestResultParser.Model;
     using Labo.DotnetTestResultParser.Parsers;
     using Labo.DotnetTestResultParser.Templates.Factory;
@@ -16,7 +17,7 @@
         private readonly string _xmlPath;
 
         private readonly ITestRunResultParser _testRunResultParser;
-        private readonly IDirectoryWrapper _directoryWrapper;
+        private readonly IFileSystemManager _directoryWrapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OutputTemplateManager"/> class.
@@ -30,7 +31,7 @@
         /// or
         /// directoryWrapper
         /// </exception>
-        public OutputTemplateManager(string xmlPath, ITestRunResultParser runResultParser, IDirectoryWrapper directoryWrapper)
+        public OutputTemplateManager(string xmlPath, ITestRunResultParser runResultParser, IFileSystemManager directoryWrapper)
         {
             if (string.IsNullOrWhiteSpace(xmlPath))
             {

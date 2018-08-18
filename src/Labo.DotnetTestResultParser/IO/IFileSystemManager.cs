@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace Labo.DotnetTestResultParser.Templates
+﻿namespace Labo.DotnetTestResultParser.IO
 {
+    using System.Collections.Generic;
+
     /// <summary>
-    /// .net Directory Wrapper
+    /// The file system manager interface.
     /// </summary>
-    public interface IDirectoryWrapper
+    public interface IFileSystemManager
     {
         /// <summary>
         /// Enumerates the files.

@@ -1,15 +1,14 @@
-﻿using System.Collections.Generic;
-using System.IO;
-
-namespace Labo.DotnetTestResultParser.Templates
+﻿namespace Labo.DotnetTestResultParser.IO
 {
     using System;
+    using System.Collections.Generic;
+    using System.IO;
 
     /// <summary>
-    /// 
+    /// The default file system manager class.
     /// </summary>
-    /// <seealso cref="Labo.DotnetTestResultParser.Templates.IDirectoryWrapper" />
-    internal class DirectoryWrapper : IDirectoryWrapper
+    /// <seealso cref="IFileSystemManager" />
+    internal sealed class DefaultFileSystemManager : IFileSystemManager
     {
         /// <inheritdoc />
         public IEnumerable<string> EnumerateFiles(string path)
@@ -39,6 +38,7 @@ namespace Labo.DotnetTestResultParser.Templates
           
         }
 
+        /// <inheritdoc />
         public bool IsDirectory(string path)
         {
             if (string.IsNullOrWhiteSpace(path))
