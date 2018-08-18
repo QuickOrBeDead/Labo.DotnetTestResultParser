@@ -32,7 +32,7 @@
                 throw new ArgumentNullException(nameof(outputWriter));
             }
 
-            outputWriter.WriteLine(_testRuns.All(x => x.IsSuccess) ? TestRunResult.Passed : TestRunResult.Failed);
+            outputWriter.Write(_testRuns.All(x => x.IsSuccess) ? TestRunResult.Passed : TestRunResult.Failed);
         }
     }
 }
