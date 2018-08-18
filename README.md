@@ -45,35 +45,30 @@ Options:
 
 ```
 $ dotnet labodotnettestresultsparser <path> -f NUnit --fail-when-result-is-failed
-
 ```
 
 ### Writes Only the Test Result Text (Passed | Failed) to the Output Text
 
 ```
 $ dotnet labodotnettestresultsparser <path> -f NUnit -o <output.txt> -t TestResult
-
 ```
 
-Output:
+#### Output:
 
 ```
 $ Passed
-
 ```
 
 ### Writes Only the Test Result  Text (Passed | Failed) for Multiple Unit Test Result Xmls to the Output Text
 
 ```
 $ dotnet labodotnettestresultsparser "/testresults/*.unittest.xml" -f NUnit -o <output.txt> -t TestResult
-
 ```
 
-Output:
+#### Output:
 
 ```
 $ Passed
-
 ```
 
 ### Bash script that checks Unit Test Results for multiple xmls
@@ -95,14 +90,12 @@ then
 else
    echo "Unit Tests Passed!"
 fi
-
 ```
 
-Output:
+#### Output:
 
 ```
-$ Passed
-
+$ Unit Tests Passed!
 ```
 
 ## Build
