@@ -30,8 +30,10 @@
                 throw new ArgumentNullException(nameof(outputWriter));
             }
 
-            foreach (var testRun in _testRun)
+            for (int i = 0; i < _testRun.Length; i++)
             {
+                var testRun = _testRun[i];
+
                 WriteLines(outputWriter, testRun);
             }
         }
