@@ -5,11 +5,11 @@ dotnet-labodotnettestresultsparser
 [![NuGet][main-nuget-badge]][main-nuget] 
 [![NuGet][nuget-dl-badge]][main-nuget]
 
-
 [main-nuget]: https://www.nuget.org/packages/dotnet-labodotnettestresultsparser/
 [main-nuget-badge]: https://img.shields.io/nuget/v/dotnet-labodotnettestresultsparser.svg?style=flat-square&label=nuget
 [nuget-dl-badge]: https://img.shields.io/nuget/dt/dotnet-labodotnettestresultsparser.svg?style=flat-square
-
+https://api.travis-ci.org/QuickOrBeDead/Labo.DotnetTestResultParser.svg?branch=master
+[![Travis Build Status](https://img.shields.io/travis/QuickOrBeDead/Labo.DotnetTestResultParser.svg)](https://travis-ci.org/QuickOrBeDead/Labo.DotnetTestResultParser)
 
 .Net Core Test Result Parser Global Tool
 
