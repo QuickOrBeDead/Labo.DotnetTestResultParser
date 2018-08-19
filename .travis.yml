@@ -10,7 +10,7 @@ addons:
     - sourceline: 'deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-trusty-prod trusty main'
       key_url: 'https://packages.microsoft.com/keys/microsoft.asc'
     packages:
-    - dotnet-sharedframework-microsoft.netcore.app-2.1.2
+    - dotnet-runtime-2.1
     - dotnet-sdk-2.1
 
 install:
