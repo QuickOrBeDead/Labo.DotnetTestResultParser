@@ -13,7 +13,7 @@ addons:
     - dotnet-sdk-2.1
 
 install:
-  - export COVERALLSNET_EXEPATH=/home/travis/build/Labo.DotnetTestResultParser/coveralls.net/Package/Archive/linux/Labo.DotnetTestResultParser.Coveralls
+  - export COVERALLSNET_EXEPATH=/home/travis/build/Labo.DotnetTestResultParser/coveralls.net/Package/Archive/linux/Labo.DotnetTestResultParser
   - dotnet restore ./src/Labo.DotnetTestResultParser.sln
 script:
   - dotnet build ./src/Labo.DotnetTestResultParser.sln -c Release
