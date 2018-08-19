@@ -1,7 +1,10 @@
 dotnet-labodotnettestresultsparser
 ============
 
-[![NuGet][main-nuget-badge]][main-nuget] [![NuGet][nuget-dl-badge]][main-nuget]
+[![License](http://img.shields.io/:license-mit-blue.svg)](https://quickorbedead.mit-license.org)
+[![NuGet][main-nuget-badge]][main-nuget] 
+[![NuGet][nuget-dl-badge]][main-nuget]
+
 
 [main-nuget]: https://www.nuget.org/packages/dotnet-labodotnettestresultsparser/
 [main-nuget-badge]: https://img.shields.io/nuget/v/dotnet-labodotnettestresultsparser.svg?style=flat-square&label=nuget
