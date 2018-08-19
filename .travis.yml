@@ -14,7 +14,7 @@ addons:
 
 install:
   - dotnet restore ./src/Labo.DotnetTestResultParser.sln
-  - dotnet tool install -g coveralls.net --version 1.0.0 && export PATH="$PATH:/root/.dotnet/tools"
+  - dotnet tool install -g coveralls.net --version 1.0.0 && export PATH="$PATH:/home/travis/.dotnet/tools"
 script:
   - dotnet build ./src/Labo.DotnetTestResultParser.sln -c Release
   - dotnet test ./test/Labo.DotnetTestResultParser.Tests/Labo.DotnetTestResultParser.Tests.csproj -c Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=/home/travis/build/Labo.DotnetTestResultParser/coverage/opencoverCoverage.xml
