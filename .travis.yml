@@ -1,0 +1,22 @@
+language: csharp
+mono: none
+dotnet: 2.1.400
+dist: trusty
+sudo: false
+
+addons:
+  apt:
+    sources:
+    - sourceline: 'deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-trusty-prod trusty main'
+      key_url: 'https://packages.microsoft.com/keys/microsoft.asc'
+    packages:
+    - dotnet-sharedframework-microsoft.netcore.app-2.1.2
+    - dotnet-sdk-2.1
+
+install:
+  - export COVERALLSNET_EXEPATH=/home/travis/build/Labo.DotnetTestResultParser/coveralls.net/Package/Archive/linux/Labo.DotnetTestResultParser.Coveralls
+  - dotnet restore ./src/Labo.DotnetTestResultParser.sln
+script:
+  - dotnet build ./src/Labo.DotnetTestResultParser.sln -c Release
+  - dotnet test ./test/Labo.DotnetTestResultParser.Tests/Labo.DotnetTestResultParser.Tests.csproj -c Release
+  - dotnet publish ./src/Labo.DotnetTestResultParser/Labo.DotnetTestResultParser.csproj -f netcoreapp2.1 -c Release -o "/home/travis/build/Labo.DotnetTestResultParser/coveralls.net/Package/Archive/linux" -r linux-x64
