@@ -13,7 +13,7 @@ addons:
     - dotnet-sdk-2.1
 
 install:
-  - dotnet tool install -g coveralls.net --version 1.0.0
+  - dotnet tool install -g coveralls.net --version 1.0.0 && export PATH="$PATH:/root/.dotnet/tools"
   - dotnet restore ./src/Labo.DotnetTestResultParser.sln
 script:
   - dotnet build ./src/Labo.DotnetTestResultParser.sln -c Release
