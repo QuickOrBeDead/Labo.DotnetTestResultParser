@@ -17,4 +17,4 @@ install:
 script:
   - dotnet build ./src/Labo.DotnetTestResultParser.sln -c Release
   - dotnet test ./test/Labo.DotnetTestResultParser.Tests/Labo.DotnetTestResultParser.Tests.csproj -c Release
-  - dotnet publish ./src/Labo.DotnetTestResultParser/Labo.DotnetTestResultParser.csproj -f netcoreapp2.1 -c Release -o "/home/travis/build/Labo.DotnetTestResultParser/coveralls.net/Package/Archive/linux"
+  - dotnet publish ./src/Labo.DotnetTestResultParser/Labo.DotnetTestResultParser.csproj -f netcoreapp2.1 -c Release -o "/home/travis/build/Labo.DotnetTestResultParser/Package/Archive/linux"
