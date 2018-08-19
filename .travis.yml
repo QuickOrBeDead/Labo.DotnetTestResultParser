@@ -13,8 +13,19 @@ addons:
     - dotnet-sdk-2.1
 
 install:
+  - dotnet tool install -g coveralls.net --version 1.0.0
   - dotnet restore ./src/Labo.DotnetTestResultParser.sln
 script:
   - dotnet build ./src/Labo.DotnetTestResultParser.sln -c Release
-  - dotnet test ./test/Labo.DotnetTestResultParser.Tests/Labo.DotnetTestResultParser.Tests.csproj -c Release
+  - dotnet test ./test/Labo.DotnetTestResultParser.Tests/Labo.DotnetTestResultParser.Tests.csproj -c Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=/home/travis/build/Labo.DotnetTestResultParser/coverage/opencoverCoverage.xml
   - dotnet publish ./src/Labo.DotnetTestResultParser/Labo.DotnetTestResultParser.csproj -f netcoreapp2.1 -c Release -o "/home/travis/build/Labo.DotnetTestResultParser/Package/Archive/linux"
+  - REPO_COMMIT_AUTHOR=$(git show -s --pretty=format:"%cn")
+  - REPO_COMMIT_AUTHOR_EMAIL=$(git show -s --pretty=format:"%ce")
+  - REPO_COMMIT_MESSAGE=$(git show -s --pretty=format:"%s")
+  - echo $TRAVIS_COMMIT
+  - echo $TRAVIS_BRANCH
+  - echo $REPO_COMMIT_AUTHOR
+  - echo $REPO_COMMIT_AUTHOR_EMAIL
+  - echo $REPO_COMMIT_MESSAGE
+  - echo $TRAVIS_JOB_ID
+  - csmacnz.coveralls --opencover -i /home/travis/build/Labo.DotnetTestResultParser/coverage/opencoverCoverage.xml --repoToken $COVERALLS_REPO_TOKEN --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName travis-ci  --useRelativePaths
