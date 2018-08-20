@@ -14,10 +14,15 @@
         bool IsSuccess { get; }
 
         /// <summary>
-        /// Creates the output template class for the specified output template type.
+        /// Creates the summary output template.
         /// </summary>
-        /// <param name="outputTemplateType">Type of the output template.</param>
         /// <returns></returns>
-        IOutputTemplate Create(OutputTemplateType outputTemplateType);
+        IOutputTemplate CreateSummaryOutputTemplate();
+
+        /// <summary>
+        /// Creates the test result output template.
+        /// </summary>
+        /// <returns></returns>
+        IOutputTemplate CreateTestResultOutputTemplate();
     }
 }

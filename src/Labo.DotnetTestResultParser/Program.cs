@@ -74,7 +74,7 @@
             {
                 OutputTemplateManager outputTemplateManager = new OutputTemplateManager(Path, new TestRunResultParser(Format), new DefaultFileSystemManager());
                 IOutputTemplateFactory outputTemplateFactory = outputTemplateManager.CreateOutputTemplateFactory();
-                IOutputTemplate outputTemplate = outputTemplateFactory.Create(Template);
+                IOutputTemplate outputTemplate = OutputTemplateManager.CreateOutputTemplate(outputTemplateFactory, Template);
                 outputTemplate.Write(outputWriter);
 
                 if (FailWhenResultIsFailed && !outputTemplateFactory.IsSuccess)

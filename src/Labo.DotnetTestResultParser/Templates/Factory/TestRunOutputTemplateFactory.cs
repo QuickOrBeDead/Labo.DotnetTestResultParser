@@ -25,17 +25,15 @@
         public bool IsSuccess => _testRun.IsSuccess;
 
         /// <inheritdoc />
-        public IOutputTemplate Create(OutputTemplateType outputTemplateType)
+        public IOutputTemplate CreateSummaryOutputTemplate()
         {
-            switch (outputTemplateType)
-            {
-                case OutputTemplateType.Summary:
-                    return new TestRunSummaryOutputTemplate(_testRun);
-                case OutputTemplateType.TestResult:
-                    return new TestRunResultOutputTemplate(_testRun);
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(outputTemplateType), outputTemplateType, null);
-            }
+            return new TestRunSummaryOutputTemplate(_testRun);
+        }
+
+        /// <inheritdoc />
+        public IOutputTemplate CreateTestResultOutputTemplate()
+        {
+            return new TestRunResultOutputTemplate(_testRun);
         }
     }
 }

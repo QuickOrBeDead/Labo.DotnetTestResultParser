@@ -32,17 +32,15 @@
         }
 
         /// <inheritdoc />
-        public IOutputTemplate Create(OutputTemplateType outputTemplateType)
+        public IOutputTemplate CreateSummaryOutputTemplate()
         {
-            switch (outputTemplateType)
-            {
-                case OutputTemplateType.Summary:
-                    return new TestRunSummaryOutputTemplate(_testRuns.ToArray());
-                case OutputTemplateType.TestResult:
-                    return new TestRunResultOutputTemplate(_testRuns.ToArray());
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(outputTemplateType), outputTemplateType, null);
-            }
+            return new TestRunSummaryOutputTemplate(_testRuns.ToArray());
+        }
+
+        /// <inheritdoc />
+        public IOutputTemplate CreateTestResultOutputTemplate()
+        {
+            return new TestRunResultOutputTemplate(_testRuns.ToArray());
         }
 
         private bool IsTestRunsSucess()

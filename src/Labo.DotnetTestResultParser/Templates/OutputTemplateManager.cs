@@ -44,6 +44,38 @@
         }
 
         /// <summary>
+        /// Creates the output template.
+        /// </summary>
+        /// <param name="outputTemplateType">Type of the output template.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException">outputTemplateType - null</exception>
+        public IOutputTemplate CreateOutputTemplate(OutputTemplateType outputTemplateType)
+        {
+            IOutputTemplateFactory outputTemplateFactory = CreateOutputTemplateFactory();
+            return CreateOutputTemplate(outputTemplateFactory, outputTemplateType);
+        }
+
+        /// <summary>
+        /// Creates the output template.
+        /// </summary>
+        /// <param name="outputTemplateFactory">The output template factory.</param>
+        /// <param name="outputTemplateType">Type of the output template.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException">outputTemplateType - null</exception>
+        public static IOutputTemplate CreateOutputTemplate(IOutputTemplateFactory outputTemplateFactory, OutputTemplateType outputTemplateType)
+        {
+            switch (outputTemplateType)
+            {
+                case OutputTemplateType.Summary:
+                    return outputTemplateFactory.CreateSummaryOutputTemplate();
+                case OutputTemplateType.TestResult:
+                    return outputTemplateFactory.CreateTestResultOutputTemplate();
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(outputTemplateType), outputTemplateType, null);
+            }
+        }
+
+        /// <summary>
         /// Creates the output template factory.
         /// </summary>
         /// <returns></returns>
@@ -57,7 +89,7 @@
             }
             else
             {
-                var testRun = _testRunResultParser.ParseXml(_xmlPath);
+                TestRun testRun = _testRunResultParser.ParseXml(_xmlPath);
                 return new TestRunOutputTemplateFactory(testRun);
             }
         }
