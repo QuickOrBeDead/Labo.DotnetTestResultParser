@@ -20,6 +20,8 @@
             _textWriter = textWriter ?? throw new ArgumentNullException(nameof(textWriter));
         }
 
+        internal TextWriter Writer => _textWriter;
+
         /// <inheritdoc />
         public void Write(string text, params object[] args)
         {
