@@ -1,5 +1,6 @@
 ﻿namespace Labo.DotnetTestResultParser.Tests.IO
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -31,6 +32,19 @@
             Assert.AreEqual(2, fileList.Count());
         }
 
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void EnumerateFiles_ShouldThrowArgumentNull_WhenPathIsNullOrWhitespace(string path)
+        {
+            // Arrange - Act
+            ArgumentException argumentException = Assert.Throws<ArgumentException>(() => _fileSystemManager.EnumerateFiles(path));
+
+            // Assert
+            Assert.AreEqual($"Value cannot be null or whitespace.{Environment.NewLine}Parameter name: path", argumentException.Message);
+        }
         [Test]
         public void IsDirectory_WhenItIsADirectory_ShouldReturnTrue()
         {
@@ -55,6 +69,19 @@
 
             // Assert
             Assert.IsFalse(result);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void IsDirectory_ShouldThrowArgumentNull_WhenPathIsNullOrWhitespace(string path)
+        {
+            // Arrange - Act
+            ArgumentException argumentException = Assert.Throws<ArgumentException>(() => _fileSystemManager.IsDirectory(path));
+
+            // Assert
+            Assert.AreEqual($"Value cannot be null or whitespace.{Environment.NewLine}Parameter name: path", argumentException.Message);
         }
 
         [Test]

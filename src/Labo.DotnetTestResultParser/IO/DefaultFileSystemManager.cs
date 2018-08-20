@@ -35,7 +35,6 @@
             {
                 return Directory.EnumerateFiles(directoryName, fileName);
             }
-          
         }
 
         /// <inheritdoc />
