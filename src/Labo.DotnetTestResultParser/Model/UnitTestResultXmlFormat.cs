@@ -6,8 +6,13 @@
     public enum UnitTestResultXmlFormat
     {
         /// <summary>
+        /// The none
+        /// </summary>
+        None = 0,
+
+        /// <summary>
         /// The nunit
         /// </summary>
-        NUnit
+        NUnit = 1
     }
 }

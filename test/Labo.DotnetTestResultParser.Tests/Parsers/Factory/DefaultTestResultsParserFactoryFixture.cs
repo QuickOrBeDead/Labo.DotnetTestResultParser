@@ -1,5 +1,7 @@
 ﻿namespace Labo.DotnetTestResultParser.Tests.Factory
 {
+    using System;
+
     using Labo.DotnetTestResultParser.Model;
     using Labo.DotnetTestResultParser.Parsers;
     using Labo.DotnetTestResultParser.Parsers.Factory;
@@ -9,6 +11,19 @@
     [TestFixture]
     public class DefaultTestResultsParserFactoryFixture
     {
+        [Test]
+        public void Create_ShouldThrowArgumentOutOfRange_WhenUnitTestResultXmlFormatIsNone()
+        {
+            // Arrange
+            DefaultTestResultsParserFactory defaultTestResultsParserFactory = new DefaultTestResultsParserFactory();
+
+            // Act
+            ArgumentOutOfRangeException argumentOutOfRangeException = Assert.Throws<ArgumentOutOfRangeException>(() => defaultTestResultsParserFactory.CreateParser(UnitTestResultXmlFormat.None));
+
+            // Assert
+            Assert.AreEqual($"Exception of type 'System.ArgumentOutOfRangeException' was thrown.{Environment.NewLine}Parameter name: unitTestResultXmlFormat{Environment.NewLine}Actual value was None.", argumentOutOfRangeException.Message);
+        }
+
         [Test]
         public void Create()
         {

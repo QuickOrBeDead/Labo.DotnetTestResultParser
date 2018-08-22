@@ -1,5 +1,6 @@
 ﻿namespace Labo.DotnetTestResultParser.Tests.Templates
 {
+    using System;
     using System.Collections.Generic;
 
     using Labo.DotnetTestResultParser.IO;
@@ -23,6 +24,23 @@
         {
             _fileSystemManager = Substitute.For<IFileSystemManager>();
             _testRunResultParser = Substitute.For<ITestRunResultParser>();
+        }
+
+        [Test]
+        [TestCase("")]
+        [TestCase(" ")]
+        [TestCase(null)]
+        public void Constructor_ShouldThrowArgumentException_WhenXmlPathIsNullOrWhitespace(string xmlPath)
+        {
+            // Arrange
+            ITestRunResultParser testRunResultParser = Substitute.For<ITestRunResultParser>();
+            IFileSystemManager fileSystemManager = Substitute.For<IFileSystemManager>();
+
+            // Act
+            ArgumentException argumentException = Assert.Throws<ArgumentException>(() => new OutputTemplateManager(xmlPath, testRunResultParser, fileSystemManager));
+
+            // Assert
+            Assert.AreEqual($"Value cannot be null or whitespace.{Environment.NewLine}Parameter name: xmlPath", argumentException.Message);
         }
 
         [Test]
@@ -100,7 +118,44 @@
             // Assert
             Assert.AreEqual(typeof(MultipleTestRunOutputTemplateFactory), factory.GetType());
         }
-        
+
+        [Test]
+        public void CreateOutputTemplate_ShouldThrowArgumentOutOfRange_WhenOutputTemplateTypeIsNone()
+        {
+            // Arrange
+            IOutputTemplateFactory outputTemplateFactory = Substitute.For<IOutputTemplateFactory>();
+
+            // Act
+            ArgumentOutOfRangeException argumentOutOfRangeException = Assert.Throws<ArgumentOutOfRangeException>(() => OutputTemplateManager.CreateOutputTemplate(outputTemplateFactory, OutputTemplateType.None));
+
+            // Assert
+            Assert.AreEqual($"Exception of type 'System.ArgumentOutOfRangeException' was thrown.{Environment.NewLine}Parameter name: outputTemplateType{Environment.NewLine}Actual value was None.", argumentOutOfRangeException.Message);
+        }
+
+        [Test]
+        [TestCase(OutputTemplateType.Summary)]
+        [TestCase(OutputTemplateType.TestResult)]
+        public void CreateOutputTemplate(OutputTemplateType outputTemplateType)
+        {
+            // Arrange
+            IOutputTemplateFactory outputTemplateFactory = Substitute.For<IOutputTemplateFactory>();
+
+            // Act
+            OutputTemplateManager.CreateOutputTemplate(outputTemplateFactory, outputTemplateType);
+
+            // Assert
+            if (outputTemplateType == OutputTemplateType.Summary)
+            {
+                outputTemplateFactory.Received(1).CreateSummaryOutputTemplate();
+                outputTemplateFactory.Received(0).CreateTestResultOutputTemplate();
+            }
+            else if (outputTemplateType == OutputTemplateType.TestResult)
+            {
+                outputTemplateFactory.Received(0).CreateSummaryOutputTemplate();
+                outputTemplateFactory.Received(1).CreateTestResultOutputTemplate();
+            }
+        }
+
         private OutputTemplateManager CreateOutputTemplateManager(string xmlPath = "a")
         {
             OutputTemplateManager outputTemplateManager =

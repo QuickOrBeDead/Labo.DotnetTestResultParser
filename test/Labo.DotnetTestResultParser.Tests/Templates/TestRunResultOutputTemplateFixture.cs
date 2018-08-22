@@ -69,5 +69,19 @@
             // Assert
             testResultsOutputWriter.Received(1).Write(TestRunResult.Failed);
         }
+
+        [Test]
+        public void Write_ShouldThrowArgumentNull_WhenOutputWriterIsNull()
+        {
+            // Arrange
+            TestRunResultOutputTemplate testRunResultOutputTemplate = new TestRunResultOutputTemplate();
+
+
+            // Act
+            ArgumentNullException argumentNullException = Assert.Throws<ArgumentNullException>(() => testRunResultOutputTemplate.Write(null));
+
+            // Assert
+            Assert.AreEqual($"Value cannot be null.{Environment.NewLine}Parameter name: outputWriter", argumentNullException.Message);
+        }
     }
 }

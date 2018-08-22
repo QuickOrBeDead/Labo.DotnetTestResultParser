@@ -18,6 +18,8 @@
         /// </value>
         public UnitTestResultXmlFormat Format { get; }
 
+        internal ITestResultsParser TestResultsParser => _testResultsParser;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TestRunResultParser"/> class.
         /// </summary>

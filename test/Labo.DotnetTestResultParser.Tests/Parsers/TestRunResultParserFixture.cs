@@ -34,6 +34,16 @@
             testResultsParser.Received(1).ParseXml(xmlPath);
         }
 
+        [Test]
+        public void ConstructorWithUnitTestResultXmlFormat_ShouldSetTestResultsParser()
+        {
+            // Arrange - Act
+            TestRunResultParser testRunResultParser = new TestRunResultParser(UnitTestResultXmlFormat.NUnit);
+
+            // Assert
+            Assert.AreEqual(true, testRunResultParser.TestResultsParser is NUnitTestResultsParser);
+        }
+
         private static ITestResultsParserFactory CreateTestResultsParserFactory(UnitTestResultXmlFormat unitTestResultXmlFormat, ITestResultsParser testResultsParser)
         {
             ITestResultsParserFactory testResultsParserFactory = Substitute.For<ITestResultsParserFactory>();

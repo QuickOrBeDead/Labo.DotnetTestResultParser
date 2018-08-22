@@ -6,13 +6,18 @@
     public enum OutputTemplateType
     {
         /// <summary>
+        /// The none
+        /// </summary>
+        None = 0,
+
+        /// <summary>
         /// The summary
         /// </summary>
-        Summary = 0,
+        Summary = 1,
 
         /// <summary>
         /// The test result
         /// </summary>
-        TestResult = 1
+        TestResult = 2
     }
 }
