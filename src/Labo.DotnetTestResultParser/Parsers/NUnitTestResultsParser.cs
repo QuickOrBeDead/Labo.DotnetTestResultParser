@@ -4,6 +4,7 @@
     using System.Globalization;
     using System.Xml.Linq;
 
+    using Labo.DotnetTestResultParser.Exceptions;
     using Labo.DotnetTestResultParser.Model;
 
     /// <summary>
@@ -46,12 +47,12 @@
                        };
         }
 
-        private static string GetAttributeValue(XElement xElement, string name)
+        internal static string GetAttributeValue(XElement xElement, string name)
         {
             XAttribute attribute = xElement.Attribute(name);
             if (attribute == null)
             {
-                throw new NullReferenceException();
+                throw new TestResultParserException($"Attribute '{name}' could not be found for the xml element '{xElement.Name}'.");
             }
 
             return attribute.Value;
