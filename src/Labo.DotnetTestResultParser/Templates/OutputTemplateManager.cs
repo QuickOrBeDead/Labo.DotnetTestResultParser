@@ -46,18 +46,6 @@
         /// <summary>
         /// Creates the output template.
         /// </summary>
-        /// <param name="outputTemplateType">Type of the output template.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException">outputTemplateType - null</exception>
-        public IOutputTemplate CreateOutputTemplate(OutputTemplateType outputTemplateType)
-        {
-            IOutputTemplateFactory outputTemplateFactory = CreateOutputTemplateFactory();
-            return CreateOutputTemplate(outputTemplateFactory, outputTemplateType);
-        }
-
-        /// <summary>
-        /// Creates the output template.
-        /// </summary>
         /// <param name="outputTemplateFactory">The output template factory.</param>
         /// <param name="outputTemplateType">Type of the output template.</param>
         /// <returns></returns>

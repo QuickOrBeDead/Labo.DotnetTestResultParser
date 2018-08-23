@@ -32,7 +32,7 @@
 
             for (int i = 0; i < _testRun.Length; i++)
             {
-                var testRun = _testRun[i];
+                TestRun testRun = _testRun[i];
 
                 WriteLines(outputWriter, testRun);
             }
@@ -41,8 +41,7 @@
         private static void WriteLines(ITestResultsOutputWriter outputWriter, TestRun testRun)
         {
             outputWriter.WriteLine("Test name : {0}", testRun.Name);
-            outputWriter.WriteLine("Total tests: {0}. Passed: {1}. Failed: {2}. Skipped: {3}.", testRun.Total, testRun.Passed,
-                testRun.Failed, testRun.Skipped);
+            outputWriter.WriteLine("Total tests: {0}. Passed: {1}. Failed: {2}. Skipped: {3}.", testRun.Total, testRun.Passed, testRun.Failed, testRun.Skipped);
             outputWriter.WriteLine("Test Run {0}.", testRun.Result);
         }
     }
