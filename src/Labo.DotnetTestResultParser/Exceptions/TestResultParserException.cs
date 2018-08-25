@@ -7,6 +7,7 @@
     /// The test result parser exception class.
     /// </summary>
     /// <seealso cref="Exception" />
+    [Serializable]
     public class TestResultParserException : Exception
     {
         /// <summary>
