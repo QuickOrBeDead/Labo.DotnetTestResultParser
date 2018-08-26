@@ -9,6 +9,7 @@ dotnet-labodotnettestresultsparser
 [main-nuget-badge]: https://img.shields.io/nuget/v/dotnet-labodotnettestresultsparser.svg?style=flat-square&label=nuget
 [nuget-dl-badge]: https://img.shields.io/nuget/dt/dotnet-labodotnettestresultsparser.svg?style=flat-square
 [![Travis Build Status](https://img.shields.io/travis/QuickOrBeDead/Labo.DotnetTestResultParser.svg)](https://travis-ci.org/QuickOrBeDead/Labo.DotnetTestResultParser)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c9c344a99a98f8862166/maintainability)](https://codeclimate.com/github/QuickOrBeDead/Labo.DotnetTestResultParser/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/QuickOrBeDead/Labo.DotnetTestResultParser/badge.svg?branch=master)](https://coveralls.io/github/QuickOrBeDead/Labo.DotnetTestResultParser?branch=master)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/2144/badge)](https://bestpractices.coreinfrastructure.org/projects/2144)
 
