@@ -34,7 +34,7 @@ Example: dotnet labodotnettestresultsparser /path/*unittest.xml -f XUnit -o &lt;
     <TieredCompilation>true</TieredCompilation>
     <AssemblyVersion>0.7.0.0</AssemblyVersion>
     <FileVersion>0.7.0.0</FileVersion>
-    <Version>0.6.0</Version>
+    <Version>0.7.0</Version>
     <PackageProjectUrl>https://github.com/QuickOrBeDead/Labo.DotnetTestResultParser</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/QuickOrBeDead/Labo.DotnetTestResultParser/blob/master/LICENSE</PackageLicenseUrl>
     <Authors>boraa</Authors>
