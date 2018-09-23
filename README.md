@@ -43,7 +43,7 @@ Options:
   --fail-when-result-is-failed  Fails the program when the unit test result is 'Failed'.
 ```
 
-### Formats
+### Xml Formats
 
 * NUnit
 * XUnit
