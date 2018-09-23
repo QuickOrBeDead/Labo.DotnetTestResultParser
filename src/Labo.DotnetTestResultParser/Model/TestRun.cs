@@ -38,6 +38,14 @@
         public int Skipped { get; set; }
 
         /// <summary>
+        /// Gets or sets the errors.
+        /// </summary>
+        /// <value>
+        /// The errors.
+        /// </value>
+        public int Errors { get; set; }
+
+        /// <summary>
         /// Gets the result.
         /// </summary>
         /// <value>

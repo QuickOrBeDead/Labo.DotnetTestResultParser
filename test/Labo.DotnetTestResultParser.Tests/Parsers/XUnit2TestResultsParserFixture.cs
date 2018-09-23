@@ -9,13 +9,13 @@
     using NUnit.Framework;
 
     [TestFixture]
-    public class NUnitTestResultsParserFixture
+    public class XUnit2TestResultsParserFixture
     {
         [Test]
         public void Parse_ShouldThrowArgumentNull_WhenXDocumentIsNull()
         {
             // Arrange - Act
-            ArgumentNullException argumentNullException = Assert.Throws<ArgumentNullException>(() => NUnitTestResultsParser.Parse(null));
+            ArgumentNullException argumentNullException = Assert.Throws<ArgumentNullException>(() => XUnit2TestResultsParser.Parse(null));
 
             // Assert
             Assert.AreEqual($"Value cannot be null.{Environment.NewLine}Parameter name: xmlDocument", argumentNullException.Message);
@@ -25,27 +25,27 @@
         public void Parse()
         {
             // Arrange
-            string xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?><test-run id=\"2\" duration=\"2.9130068999999832\" testcasecount=\"150\" total=\"6\" passed=\"3\" failed=\"2\" skipped=\"1\" result=\"Failed\" start-time=\"2018-08-10T 13:16:57Z\" end-time=\"2018-08-10T 13:17:02Z\"></test-run>";
+            string xml = XmlPathUtility.GetTestXmlContent("XUnit2.xml");
 
             // Act
-            TestRun testRun = NUnitTestResultsParser.Parse(XDocument.Parse(xml));
+            TestRun testRun = XUnit2TestResultsParser.Parse(XDocument.Parse(xml));
 
             // Assert
-            AssertTestRun(testRun, 6, 3, 2, 1, "Failed", false, "2");
+            AssertTestRun(testRun, 12, 4, 6, 2, "Failed", false, "XUnit 09/23/2018 19:57:53");
         }
 
         [Test]
         public void ParseXml()
         {
             // Arrange
-            string path = XmlPathUtility.GetTestXmlPath("Organon.ExceptionHandling.AspNetCore.Tests.unittest.xml");
-            NUnitTestResultsParser testResultsParser = new NUnitTestResultsParser();
+            string path = XmlPathUtility.GetTestXmlPath("XUnit2.xml");
+            XUnit2TestResultsParser testResultsParser = new XUnit2TestResultsParser();
 
             // Act
             TestRun testRun = testResultsParser.ParseXml(path);
 
             // Assert
-            AssertTestRun(testRun, 9, 8, 1, 0, "Failed", false, "2");
+            AssertTestRun(testRun, 12, 4, 6, 2, "Failed", false, "XUnit 09/23/2018 19:57:53");
         }
 
         private static void AssertTestRun(TestRun testRun, int total, int passed, int failed, int skipped, string result, bool isSuccess, string name)

@@ -30,7 +30,7 @@
         public void Write()
         {
             // Arrange
-            TestRun testRun = new TestRun { IsSuccess = true, Passed = 10, Failed = 0, Skipped = 2, Total = 12, Result = "Passed", Name = "Test 1" };
+            TestRun testRun = new TestRun { IsSuccess = true, Passed = 10, Failed = 0, Skipped = 2, Errors = 1, Total = 12, Result = "Passed", Name = "Test 1" };
             TestRunSummaryOutputTemplate testRunSummaryOutputTemplate = new TestRunSummaryOutputTemplate(testRun);
             ITestResultsOutputWriter outputWriter = Substitute.For<ITestResultsOutputWriter>();
 
@@ -47,8 +47,8 @@
             // Arrange
             TestRun[] testRuns =
                 {
-                    new TestRun { IsSuccess = true, Passed = 10, Failed = 0, Skipped = 2, Total = 12, Result = "Passed", Name = "Test 1" },
-                    new TestRun { IsSuccess = false, Passed = 8, Failed = 1, Skipped = 1, Total = 10, Result = "Failed", Name = "Test 2" }
+                    new TestRun { IsSuccess = true, Passed = 10, Failed = 0, Skipped = 2, Errors = 1, Total = 12, Result = "Passed", Name = "Test 1" },
+                    new TestRun { IsSuccess = false, Passed = 8, Failed = 1, Skipped = 1, Errors = 0, Total = 10, Result = "Failed", Name = "Test 2" }
                 };
             TestRunSummaryOutputTemplate testRunSummaryOutputTemplate = new TestRunSummaryOutputTemplate(testRuns);
             ITestResultsOutputWriter outputWriter = Substitute.For<ITestResultsOutputWriter>();
@@ -80,7 +80,7 @@
         private static void AssertOutputWriterTestRunWrite(ITestResultsOutputWriter outputWriter, TestRun testRun)
         {
             outputWriter.Received(1).WriteLine("Test name : {0}", testRun.Name);
-            outputWriter.Received(1).WriteLine("Total tests: {0}. Passed: {1}. Failed: {2}. Skipped: {3}.", testRun.Total, testRun.Passed, testRun.Failed, testRun.Skipped);
+            outputWriter.Received(1).WriteLine("Total tests: {0}. Passed: {1}. Failed: {2}. Skipped: {3}. Errors: {4}.", testRun.Total, testRun.Passed, testRun.Failed, testRun.Skipped, testRun.Errors);
             outputWriter.Received(1).WriteLine("Test Run {0}.", testRun.Result);
         }
     }

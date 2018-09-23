@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assemblies timestamp="09/23/2018 19:57:53">
+  <assembly name="C:\Users\BoraA\Documents\Visual Studio 2017\Projects\Test\bin\Debug\netcoreapp2.1\Test.dll" run-date="2018-09-23" run-time="19:57:53" total="6" passed="2" failed="3" skipped="1" time="0.036" errors="0">
+    <errors />
+    <collection total="2" passed="1" failed="1" skipped="0" name="Test collection for Test.UnitTest1" time="0.018">
+      <test name="Test.UnitTest1.Get1" type="Test.UnitTest1" method="Get1" time="0.0110000" result="Pass">
+        <traits />
+      </test>
+      <test name="Test.UnitTest1.Get2" type="Test.UnitTest1" method="Get2" time="0.0070000" result="Fail">
+        <failure>
+          <message>
+            Assert.Equal() Failure
+            Expected: 0
+            Actual:   2
+          </message>
+          <stack-trace>   at Test.UnitTest1.Get2() in C:\Users\BoraA\Documents\Visual Studio 2017\Projects\Test\UnitTest1.cs:line 18</stack-trace>
+        </failure>
+        <traits />
+      </test>
+    </collection>
+    <collection total="4" passed="1" failed="2" skipped="1" name="Test collection for Test.UnitTest2" time="0.018">
+      <test name="Test.UnitTest2.Get1" type="Test.UnitTest2" method="Get1" time="0.0110000" result="Pass">
+        <traits />
+      </test>
+      <test name="Test.UnitTest2.Get2" type="Test.UnitTest2" method="Get2" time="0.0070000" result="Fail">
+        <failure>
+          <message>
+            Assert.Equal() Failure
+            Expected: 0
+            Actual:   2
+          </message>
+          <stack-trace>   at Test.UnitTest2.Get2() in C:\Users\BoraA\Documents\Visual Studio 2017\Projects\Test\UnitTest2.cs:line 18</stack-trace>
+        </failure>
+        <traits />
+      </test>
+      <test name="Test.UnitTest2.Get3" type="Test.UnitTest2" method="Get3" time="0.0070000" result="Fail">
+        <failure>
+          <message>
+            Assert.Equal() Failure
+            Expected: 0
+            Actual:   2
+          </message>
+          <stack-trace>   at Test.UnitTest2.Get3() in C:\Users\BoraA\Documents\Visual Studio 2017\Projects\Test\UnitTest2.cs:line 18</stack-trace>
+        </failure>
+        <traits />
+      </test>
+    </collection>
+  </assembly>
+  <assembly name="C:\Users\BoraA\Documents\Visual Studio 2017\Projects\Test\bin\Debug\netcoreapp2.1\Test.dll" run-date="2018-09-23" run-time="19:57:53" total="6" passed="2" failed="3" skipped="1" time="0.036" errors="0">
+    <errors />
+    <collection total="2" passed="1" failed="1" skipped="0" name="Test collection for Test.UnitTest1" time="0.018">
+      <test name="Test.UnitTest1.Get1" type="Test.UnitTest1" method="Get1" time="0.0110000" result="Pass">
+        <traits />
+      </test>
+      <test name="Test.UnitTest1.Get2" type="Test.UnitTest1" method="Get2" time="0.0070000" result="Fail">
+        <failure>
+          <message>
+            Assert.Equal() Failure
+            Expected: 0
+            Actual:   2
+          </message>
+          <stack-trace>   at Test.UnitTest1.Get2() in C:\Users\BoraA\Documents\Visual Studio 2017\Projects\Test\UnitTest1.cs:line 18</stack-trace>
+        </failure>
+        <traits />
+      </test>
+    </collection>
+    <collection total="4" passed="1" failed="2" skipped="1" name="Test collection for Test.UnitTest2" time="0.018">
+      <test name="Test.UnitTest2.Get1" type="Test.UnitTest2" method="Get1" time="0.0110000" result="Pass">
+        <traits />
+      </test>
+      <test name="Test.UnitTest2.Get2" type="Test.UnitTest2" method="Get2" time="0.0070000" result="Fail">
+        <failure>
+          <message>
+            Assert.Equal() Failure
+            Expected: 0
+            Actual:   2
+          </message>
+          <stack-trace>   at Test.UnitTest2.Get2() in C:\Users\BoraA\Documents\Visual Studio 2017\Projects\Test\UnitTest2.cs:line 18</stack-trace>
+        </failure>
+        <traits />
+      </test>
+      <test name="Test.UnitTest2.Get3" type="Test.UnitTest2" method="Get3" time="0.0070000" result="Fail">
+        <failure>
+          <message>
+            Assert.Equal() Failure
+            Expected: 0
+            Actual:   2
+          </message>
+          <stack-trace>   at Test.UnitTest2.Get3() in C:\Users\BoraA\Documents\Visual Studio 2017\Projects\Test\UnitTest2.cs:line 18</stack-trace>
+        </failure>
+        <traits />
+      </test>
+    </collection>
+  </assembly>
+</assemblies>

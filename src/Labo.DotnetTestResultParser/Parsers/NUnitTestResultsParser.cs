@@ -4,8 +4,8 @@
     using System.Globalization;
     using System.Xml.Linq;
 
-    using Labo.DotnetTestResultParser.Exceptions;
     using Labo.DotnetTestResultParser.Model;
+    using Labo.DotnetTestResultParser.Utils;
 
     /// <summary>
     /// The nunit test results parser class.
@@ -28,12 +28,12 @@
             }
 
             XElement xmlDocumentRoot = xmlDocument.Root;
-            string result = GetAttributeValue(xmlDocumentRoot, "result");
-            int total = Convert.ToInt32(GetAttributeValue(xmlDocumentRoot, "total"), CultureInfo.InvariantCulture);
-            int passed = Convert.ToInt32(GetAttributeValue(xmlDocumentRoot, "passed"), CultureInfo.InvariantCulture);
-            int failed = Convert.ToInt32(GetAttributeValue(xmlDocumentRoot, "failed"), CultureInfo.InvariantCulture);
-            int skipped = Convert.ToInt32(GetAttributeValue(xmlDocumentRoot, "skipped"), CultureInfo.InvariantCulture);
-            string name = GetAttributeValue(xmlDocumentRoot, "id");
+            string result = XmlUtils.GetAttributeValue(xmlDocumentRoot, "result");
+            int total = Convert.ToInt32(XmlUtils.GetAttributeValue(xmlDocumentRoot, "total"), CultureInfo.InvariantCulture);
+            int passed = Convert.ToInt32(XmlUtils.GetAttributeValue(xmlDocumentRoot, "passed"), CultureInfo.InvariantCulture);
+            int failed = Convert.ToInt32(XmlUtils.GetAttributeValue(xmlDocumentRoot, "failed"), CultureInfo.InvariantCulture);
+            int skipped = Convert.ToInt32(XmlUtils.GetAttributeValue(xmlDocumentRoot, "skipped"), CultureInfo.InvariantCulture);
+            string name = XmlUtils.GetAttributeValue(xmlDocumentRoot, "id");
 
             return new TestRun
                        {
@@ -45,17 +45,6 @@
                            IsSuccess = string.Equals("Passed", result, StringComparison.OrdinalIgnoreCase),
                            Name = name
                        };
-        }
-
-        internal static string GetAttributeValue(XElement xElement, string name)
-        {
-            XAttribute attribute = xElement.Attribute(name);
-            if (attribute == null)
-            {
-                throw new TestResultParserException($"Attribute '{name}' could not be found for the xml element '{xElement.Name}'.");
-            }
-
-            return attribute.Value;
         }
     }
 }

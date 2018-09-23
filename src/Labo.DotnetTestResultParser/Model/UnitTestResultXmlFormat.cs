@@ -13,6 +13,11 @@
         /// <summary>
         /// The nunit
         /// </summary>
-        NUnit = 1
+        NUnit = 1,
+
+        /// <summary>
+        /// The xunit
+        /// </summary>
+        XUnit = 2
     }
 }

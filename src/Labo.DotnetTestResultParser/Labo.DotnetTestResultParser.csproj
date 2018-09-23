@@ -15,14 +15,15 @@ Arguments:
 Options:
   --version     Show version information
   -?|-h|--help  Show help information
-  -f|--format   Unit test result xml format. (Default: NUnit)
+  -f|--format   Unit test result xml format. Allowed values are: NUnit, XUnit. (Default: NUnit)
   -o|--output  Output file to write results. (Default output is Console)
   -t|--template The output template. Allowed values are: Summary, TestResult. (Default: Summary)
   --fail-when-result-is-failed  Fails the program when the unit test result is 'Failed'.
 
 Example: dotnet labodotnettestresultsparser &lt;xmlpath&gt; -f NUnit --fail-when-result-is-failed
 Example: dotnet labodotnettestresultsparser &lt;xmlpath&gt; -f NUnit -o &lt;output.txt&gt; -t TestResult
-Example: dotnet labodotnettestresultsparser /path/*unittest.xml -f NUnit -o &lt;output.txt&gt; -t TestResult</Description>
+Example: dotnet labodotnettestresultsparser /path/*unittest.xml -f NUnit -o &lt;output.txt&gt; -t TestResult
+Example: dotnet labodotnettestresultsparser /path/*unittest.xml -f XUnit -o &lt;output.txt&gt; -t TestResult</Description>
     <Title>.Net Core Test Result Parser Global Tool</Title>
     <Summary>.Net Core Test Result Parser Global Tool</Summary>
     <IsPackable>true</IsPackable>
@@ -31,13 +32,13 @@ Example: dotnet labodotnettestresultsparser /path/*unittest.xml -f NUnit -o &lt;
     <OutputType>Exe</OutputType>
     <StartupObject />
     <TieredCompilation>true</TieredCompilation>
-    <AssemblyVersion>0.6.0.0</AssemblyVersion>
-    <FileVersion>0.6.0.0</FileVersion>
+    <AssemblyVersion>0.7.0.0</AssemblyVersion>
+    <FileVersion>0.7.0.0</FileVersion>
     <Version>0.6.0</Version>
     <PackageProjectUrl>https://github.com/QuickOrBeDead/Labo.DotnetTestResultParser</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/QuickOrBeDead/Labo.DotnetTestResultParser/blob/master/LICENSE</PackageLicenseUrl>
     <Authors>boraa</Authors>
-    <PackageTags>dotnet global tools unit test result parser nunit</PackageTags>
+    <PackageTags>dotnet global tools unit test result parser nunit xunit</PackageTags>
     <RepositoryUrl>https://github.com/QuickOrBeDead/Labo.DotnetTestResultParser.git</RepositoryUrl>
     <Company>Labo</Company>
     <Copyright>Copyright (c) 2018 Bora Akgün</Copyright>

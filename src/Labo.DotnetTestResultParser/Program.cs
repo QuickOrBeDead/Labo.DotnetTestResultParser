@@ -29,6 +29,7 @@
         /// </value>
         [Required]
         [Argument(0, "path", Description = "The test result xml path.")]
+        // ReSharper disable once UnassignedGetOnlyAutoProperty
         public string Path { get; }
 
         /// <summary>
@@ -37,7 +38,7 @@
         /// <value>
         /// The format.
         /// </value>
-        [Option("-f|--format", Description = "Unit test result xml format. (Default: NUnit)")]
+        [Option("-f|--format", Description = "Unit test result xml format. Allowed values are: NUnit, XUnit. (Default: NUnit)")]
         public UnitTestResultXmlFormat Format { get; } = UnitTestResultXmlFormat.NUnit;
 
         /// <summary>
@@ -56,6 +57,7 @@
         /// The output.
         /// </value>
         [Option("-o|--output", Description = "Output file to write results. (Default output is Console)")]
+        // ReSharper disable once UnassignedGetOnlyAutoProperty
         public string Output { get; }
 
         /// <summary>
@@ -67,6 +69,7 @@
         [Option("-t|--template", Description = "The output template. Allowed values are: Summary, TestResult. (Default: Summary)")]
         public OutputTemplateType Template { get; } = OutputTemplateType.Summary;  
 
+        // ReSharper disable once UnusedMember.Local
         private int OnExecute()
         {
             ITestResultsOutputWriterFactory outputWriterFactory = new DefaultTestResultsOutputWriterFactory();

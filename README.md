@@ -11,7 +11,7 @@ dotnet-labodotnettestresultsparser
 [![Travis Build Status](https://img.shields.io/travis/QuickOrBeDead/Labo.DotnetTestResultParser.svg)](https://travis-ci.org/QuickOrBeDead/Labo.DotnetTestResultParser)
 [![Coverage Status](https://coveralls.io/repos/github/QuickOrBeDead/Labo.DotnetTestResultParser/badge.svg?branch=master)](https://coveralls.io/github/QuickOrBeDead/Labo.DotnetTestResultParser?branch=master)
 
-.Net Core Test Result Parser Global Tool
+.Net Core Test Result Parser Global Tool for NUnit and XUnit
 
 ## Installation
 
@@ -36,11 +36,16 @@ Arguments:
 Options:
   --version                     Show version information
   -?|-h|--help                  Show help information
-  -f|--format                   Unit test result xml format. (Default: NUnit)
+  -f|--format                   Unit test result xml format. Allowed values are: NUnit, XUnit. (Default: NUnit)
   -o|--output                   Output file to write results. (Default output is Console)
   -t|--template                 The output template. Allowed values are: Summary, TestResult. (Default: Summary)
   --fail-when-result-is-failed  Fails the program when the unit test result is 'Failed'.
 ```
+
+### Formats
+
+* NUnit
+* XUnit
 
 ## Examples
 
@@ -127,3 +132,4 @@ dotnet tool uninstall -g dotnet-labodotnettestresultsparser
 * [.NET Core Global Tools Sample](https://github.com/dotnet/core/blob/master/samples/dotnetsay/README.md)
 * [.NET Core Global Tools and Gotchas](https://www.natemcmaster.com/blog/2018/02/02/dotnet-global-tool/)
 * [NUnit Test Result XML Format](https://github.com/nunit/docs/wiki/Test-Result-XML-Format)
+* [XUnit Test Result XML Format](https://xunit.github.io/docs/format-xml-v2)
