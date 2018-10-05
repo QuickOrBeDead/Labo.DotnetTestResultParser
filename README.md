@@ -12,7 +12,7 @@ dotnet-labodotnettestresultsparser
 [![Coverage Status](https://coveralls.io/repos/github/QuickOrBeDead/Labo.DotnetTestResultParser/badge.svg?branch=master)](https://coveralls.io/github/QuickOrBeDead/Labo.DotnetTestResultParser?branch=master)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/2144/badge)](https://bestpractices.coreinfrastructure.org/projects/2144)
 
-.Net Core Test Result Parser Global Tool for NUnit and XUnit
+.Net Core Test Result Parser Global Tool for NUnit, XUnit, MsTest
 
 ## Installation
 
@@ -37,7 +37,7 @@ Arguments:
 Options:
   --version                     Show version information
   -?|-h|--help                  Show help information
-  -f|--format                   Unit test result xml format. Allowed values are: NUnit, XUnit. (Default: NUnit)
+  -f|--format                   Unit test result xml format. Allowed values are: NUnit, XUnit, MsTest. (Default: NUnit)
   -o|--output                   Output file to write results. (Default output is Console)
   -t|--template                 The output template. Allowed values are: Summary, TestResult. (Default: Summary)
   --fail-when-result-is-failed  Fails the program when the unit test result is 'Failed'.
@@ -47,6 +47,7 @@ Options:
 
 * NUnit
 * XUnit
+* MsTest
 
 ## Examples
 
@@ -134,3 +135,4 @@ dotnet tool uninstall -g dotnet-labodotnettestresultsparser
 * [.NET Core Global Tools and Gotchas](https://www.natemcmaster.com/blog/2018/02/02/dotnet-global-tool/)
 * [NUnit Test Result XML Format](https://github.com/nunit/docs/wiki/Test-Result-XML-Format)
 * [XUnit Test Result XML Format](https://xunit.github.io/docs/format-xml-v2)
+* [MsTest Test Result XML Format](https://wiki.jenkins.io/display/JENKINS/MSTest+Plugin)

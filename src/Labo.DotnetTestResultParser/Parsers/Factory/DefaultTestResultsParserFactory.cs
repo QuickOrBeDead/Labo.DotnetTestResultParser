@@ -19,6 +19,8 @@
                     return new NUnitTestResultsParser();
                 case UnitTestResultXmlFormat.XUnit:
                     return new XUnit2TestResultsParser();
+                case UnitTestResultXmlFormat.MsTest:
+                    return new MsTestResultsParser();
                 default:
                     throw new ArgumentOutOfRangeException(nameof(unitTestResultXmlFormat), unitTestResultXmlFormat, null);
             }

@@ -18,6 +18,11 @@
         /// <summary>
         /// The xunit
         /// </summary>
-        XUnit = 2
+        XUnit = 2,
+
+        /// <summary>
+        /// The ms test
+        /// </summary>
+        MsTest = 3
     }
 }
