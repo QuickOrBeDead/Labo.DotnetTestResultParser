@@ -82,15 +82,15 @@
             }
         }
 
-        private IOutputTemplateFactory CreateMultipleTestRunOutputTemplateFactory(IList<string> filePaths)
+        private MultipleTestRunOutputTemplateFactory CreateMultipleTestRunOutputTemplateFactory(IList<string> filePaths)
         {
-            IList<TestRun> testRuns = CreateTestRuns(filePaths);
+            var testRuns = CreateTestRuns(filePaths);
             return new MultipleTestRunOutputTemplateFactory(testRuns);
         }
 
-        internal IList<TestRun> CreateTestRuns(IList<string> filePaths)
+        internal List<TestRun> CreateTestRuns(IList<string> filePaths)
         {
-            IList<TestRun> testRuns = new List<TestRun>();
+            var testRuns = new List<TestRun>();
 
             for (int i = 0; i < filePaths.Count; i++)
             {

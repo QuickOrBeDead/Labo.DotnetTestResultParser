@@ -1,6 +1,7 @@
 ﻿namespace Labo.DotnetTestResultParser
 {
     using System.ComponentModel.DataAnnotations;
+    using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
 
     using Labo.DotnetTestResultParser.IO;
@@ -67,9 +68,10 @@
         /// The template.
         /// </value>
         [Option("-t|--template", Description = "The output template. Allowed values are: Summary, TestResult. (Default: Summary)")]
-        public OutputTemplateType Template { get; } = OutputTemplateType.Summary;  
+        public OutputTemplateType Template { get; } = OutputTemplateType.Summary;
 
         // ReSharper disable once UnusedMember.Local
+        [SuppressMessage("Major Code Smell", "S1144:Unused private types or members should be removed", Justification = "<Pending>")]
         private int OnExecute()
         {
             ITestResultsOutputWriterFactory outputWriterFactory = new DefaultTestResultsOutputWriterFactory();
