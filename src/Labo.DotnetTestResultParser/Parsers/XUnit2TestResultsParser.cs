@@ -23,10 +23,7 @@
 
         internal static TestRun Parse(XDocument xmlDocument)
         {
-            if (xmlDocument == null)
-            {
-                throw new ArgumentNullException(nameof(xmlDocument));
-            }
+            ArgumentNullException.ThrowIfNull(xmlDocument);
 
             XElement xmlDocumentRoot = xmlDocument.Root;
 

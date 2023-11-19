@@ -25,10 +25,7 @@
         /// <inheritdoc />
         public void Write(ITestResultsOutputWriter outputWriter)
         {
-            if (outputWriter == null)
-            {
-                throw new ArgumentNullException(nameof(outputWriter));
-            }
+            ArgumentNullException.ThrowIfNull(outputWriter);
 
             for (int i = 0; i < _testRun.Length; i++)
             {

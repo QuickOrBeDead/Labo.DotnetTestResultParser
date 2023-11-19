@@ -19,9 +19,14 @@
             }
 
             string directoryName = Path.GetDirectoryName(path);
+            if (directoryName == null)
+            {
+                throw new InvalidOperationException($"Path.GetDirectoryName returns null for path: '{path}'");
+            }
+
             string fileName = Path.GetFileName(path);
 
-            if (!string.IsNullOrWhiteSpace(fileName) && fileName.Contains("*", StringComparison.InvariantCulture))
+            if (!string.IsNullOrWhiteSpace(fileName) && fileName.Contains('*', StringComparison.InvariantCulture))
             {
                 return Directory.EnumerateFiles(directoryName, fileName);
             }

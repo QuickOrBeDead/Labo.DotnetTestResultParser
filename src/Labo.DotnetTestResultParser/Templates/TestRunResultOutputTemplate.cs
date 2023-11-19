@@ -27,10 +27,7 @@
         /// <inheritdoc />
         public void Write(ITestResultsOutputWriter outputWriter)
         {
-            if (outputWriter == null)
-            {
-                throw new ArgumentNullException(nameof(outputWriter));
-            }
+            ArgumentNullException.ThrowIfNull(outputWriter);
 
             outputWriter.Write(_testRuns.All(x => x.IsSuccess) ? TestRunResult.Passed : TestRunResult.Failed);
         }

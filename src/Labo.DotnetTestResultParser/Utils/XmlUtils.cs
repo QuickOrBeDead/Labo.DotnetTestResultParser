@@ -19,8 +19,8 @@
         /// <exception cref="TestResultParserException"></exception>
         public static string GetAttributeValue(XElement xElement, string name)
         {
-            if (xElement == null) throw new ArgumentNullException(nameof(xElement));
-            if (name == null) throw new ArgumentNullException(nameof(name));
+            ArgumentNullException.ThrowIfNull(xElement);
+            ArgumentNullException.ThrowIfNull(name);
 
             XAttribute attribute = xElement.Attribute(name);
             if (attribute == null)
