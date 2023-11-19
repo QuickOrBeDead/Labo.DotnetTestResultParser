@@ -24,7 +24,7 @@
             ArgumentNullException argumentNullException = Assert.Throws<ArgumentNullException>(() => new MultipleTestRunOutputTemplateFactory(testRuns));
 
             // Assert
-            Assert.AreEqual($"Value cannot be null.{Environment.NewLine}Parameter name: testRuns", argumentNullException.Message);
+            Assert.AreEqual("Value cannot be null. (Parameter 'testRuns')", argumentNullException.Message);
         }
 
         [Test]

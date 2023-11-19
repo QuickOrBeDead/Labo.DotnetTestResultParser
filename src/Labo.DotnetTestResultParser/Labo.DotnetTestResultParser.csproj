@@ -1,9 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RuntimeIdentifiers>win-x64;osx-x64;linux-x64</RuntimeIdentifiers>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <CodeAnalysisCulture>en-US</CodeAnalysisCulture>
     <AssemblyName>dotnet-labodotnettestresultsparser</AssemblyName>
     <Description>.Net Core Test Result Parser Global Tool
 
@@ -33,9 +34,9 @@ Example: dotnet labodotnettestresultsparser /path/*unittest.xml -f MsTest -o &lt
     <OutputType>Exe</OutputType>
     <StartupObject />
     <TieredCompilation>true</TieredCompilation>
-    <AssemblyVersion>0.8.0.0</AssemblyVersion>
-    <FileVersion>0.8.0.0</FileVersion>
-    <Version>0.8.0</Version>
+    <AssemblyVersion>0.9.0.0</AssemblyVersion>
+    <FileVersion>0.9.0.0</FileVersion>
+    <Version>0.9.0</Version>
     <PackageProjectUrl>https://github.com/QuickOrBeDead/Labo.DotnetTestResultParser</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/QuickOrBeDead/Labo.DotnetTestResultParser/blob/master/LICENSE</PackageLicenseUrl>
     <Authors>boraa</Authors>
@@ -48,27 +49,28 @@ Example: dotnet labodotnettestresultsparser /path/*unittest.xml -f MsTest -o &lt
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp2.1\Labo.DotnetTestResultParser.xml</DocumentationFile>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <WarningsAsErrors />
+    <DocumentationFile>bin\Debug\net8.0\Labo.DotnetTestResultParser.xml</DocumentationFile>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <WarningsNotAsErrors>NU5125;NU5048</WarningsNotAsErrors>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netcoreapp2.1\Labo.DotnetTestResultParser.xml</DocumentationFile>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <WarningsAsErrors />
+    <DocumentationFile>bin\Release\net8.0\Labo.DotnetTestResultParser.xml</DocumentationFile>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <WarningsNotAsErrors>NU5125;NU5048</WarningsNotAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.2.5" />
-    <PackageReference Include="Microsoft.AnalyzerPowerPack" Version="1.1.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.1" />
-    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.1" />
-    <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.6.1" />
-    <PackageReference Include="Microsoft.NetFramework.Analyzers" Version="2.6.1" />
-    <PackageReference Include="System.Runtime.Analyzers" Version="1.1.0" />
-    <PackageReference Include="System.Runtime.InteropServices.Analyzers" Version="1.1.0" />
-    <PackageReference Include="System.Security.Cryptography.Hashing.Algorithms.Analyzers" Version="1.1.0" />
-    <PackageReference Include="Text.Analyzers" Version="2.6.1" />
+    <CodeAnalysisDictionary Include="..\..\CodeAnalaysisDictionary.xml" Link="CodeAnalaysisDictionary.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="4.1.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 </Project>

@@ -23,7 +23,7 @@
             ArgumentNullException argumentNullException = Assert.Throws<ArgumentNullException>(() => new TestRunSummaryOutputTemplate(testRuns));
 
             // Assert
-            Assert.AreEqual($"Value cannot be null.{Environment.NewLine}Parameter name: testRuns", argumentNullException.Message);
+            Assert.AreEqual("Value cannot be null. (Parameter 'testRuns')", argumentNullException.Message);
         }
 
         [Test]
@@ -74,7 +74,7 @@
             ArgumentNullException argumentNullException = Assert.Throws<ArgumentNullException>(() => testRunSummaryOutputTemplate.Write(null));
 
             // Assert
-            Assert.AreEqual($"Value cannot be null.{Environment.NewLine}Parameter name: outputWriter", argumentNullException.Message);
+            Assert.AreEqual("Value cannot be null. (Parameter 'outputWriter')", argumentNullException.Message);
         }
 
         private static void AssertOutputWriterTestRunWrite(ITestResultsOutputWriter outputWriter, TestRun testRun)

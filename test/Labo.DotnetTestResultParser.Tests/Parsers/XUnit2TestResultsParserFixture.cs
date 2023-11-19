@@ -18,7 +18,7 @@
             ArgumentNullException argumentNullException = Assert.Throws<ArgumentNullException>(() => XUnit2TestResultsParser.Parse(null));
 
             // Assert
-            Assert.AreEqual($"Value cannot be null.{Environment.NewLine}Parameter name: xmlDocument", argumentNullException.Message);
+            Assert.AreEqual("Value cannot be null. (Parameter 'xmlDocument')", argumentNullException.Message);
         }
 
         [Test]

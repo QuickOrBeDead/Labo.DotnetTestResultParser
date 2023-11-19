@@ -43,7 +43,7 @@
             ArgumentException argumentException = Assert.Throws<ArgumentException>(() => _fileSystemManager.EnumerateFiles(path));
 
             // Assert
-            Assert.AreEqual($"Value cannot be null or whitespace.{Environment.NewLine}Parameter name: path", argumentException.Message);
+            Assert.AreEqual($"Value cannot be null or whitespace. (Parameter 'path')", argumentException.Message);
         }
         [Test]
         public void IsDirectory_WhenItIsADirectory_ShouldReturnTrue()
@@ -81,7 +81,7 @@
             ArgumentException argumentException = Assert.Throws<ArgumentException>(() => _fileSystemManager.IsDirectory(path));
 
             // Assert
-            Assert.AreEqual($"Value cannot be null or whitespace.{Environment.NewLine}Parameter name: path", argumentException.Message);
+            Assert.AreEqual($"Value cannot be null or whitespace. (Parameter 'path')", argumentException.Message);
         }
 
         [Test]

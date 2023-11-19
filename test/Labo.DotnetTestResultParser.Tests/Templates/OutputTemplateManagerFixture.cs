@@ -40,7 +40,7 @@
             ArgumentException argumentException = Assert.Throws<ArgumentException>(() => new OutputTemplateManager(xmlPath, testRunResultParser, fileSystemManager));
 
             // Assert
-            Assert.AreEqual($"Value cannot be null or whitespace.{Environment.NewLine}Parameter name: xmlPath", argumentException.Message);
+            Assert.AreEqual("Value cannot be null or whitespace. (Parameter 'xmlPath')", argumentException.Message);
         }
 
         [Test]
@@ -129,7 +129,7 @@
             ArgumentOutOfRangeException argumentOutOfRangeException = Assert.Throws<ArgumentOutOfRangeException>(() => OutputTemplateManager.CreateOutputTemplate(outputTemplateFactory, OutputTemplateType.None));
 
             // Assert
-            Assert.AreEqual($"Exception of type 'System.ArgumentOutOfRangeException' was thrown.{Environment.NewLine}Parameter name: outputTemplateType{Environment.NewLine}Actual value was None.", argumentOutOfRangeException.Message);
+            Assert.AreEqual($"Exception of type 'System.ArgumentOutOfRangeException' was thrown. (Parameter 'outputTemplateType'){Environment.NewLine}Actual value was None.", argumentOutOfRangeException.Message);
         }
 
         [Test]

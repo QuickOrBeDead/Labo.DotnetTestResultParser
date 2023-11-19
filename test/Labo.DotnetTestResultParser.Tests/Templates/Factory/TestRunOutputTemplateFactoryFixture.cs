@@ -21,11 +21,11 @@
             ArgumentNullException argumentNullException = Assert.Throws<ArgumentNullException>(() => new TestRunOutputTemplateFactory(testRun));
 
             // Assert
-            Assert.AreEqual($"Value cannot be null.{Environment.NewLine}Parameter name: testRun", argumentNullException.Message);
+            Assert.AreEqual("Value cannot be null. (Parameter 'testRun')", argumentNullException.Message);
         }
 
         [Test]
-        public void IsSucess_WhenTestRunIsUnSuccess_ShoudIsSucessFalse()
+        public void IsSuccess_WhenTestRunIsUnSuccess_ShouldIsSuccessFalse()
         {
             // Arrange
             var testRuns = CreateTestRunUnsuccess();

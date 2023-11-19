@@ -20,7 +20,7 @@
         private readonly IEnumerable<TestRun> _testRuns;
 
         /// <inheritdoc />
-        public bool IsSuccess => IsTestRunsSucess();
+        public bool IsSuccess => IsTestRunsSuccess();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MultipleTestRunOutputTemplateFactory"/> class.
@@ -43,7 +43,7 @@
             return new TestRunResultOutputTemplate(_testRuns.ToArray());
         }
 
-        private bool IsTestRunsSucess()
+        private bool IsTestRunsSuccess()
         {
             return _testRuns.All(testRun => testRun.IsSuccess);
         }

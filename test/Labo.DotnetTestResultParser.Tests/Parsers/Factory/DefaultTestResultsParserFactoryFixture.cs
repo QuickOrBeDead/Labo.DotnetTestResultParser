@@ -21,7 +21,7 @@
             ArgumentOutOfRangeException argumentOutOfRangeException = Assert.Throws<ArgumentOutOfRangeException>(() => defaultTestResultsParserFactory.CreateParser(UnitTestResultXmlFormat.None));
 
             // Assert
-            Assert.AreEqual($"Exception of type 'System.ArgumentOutOfRangeException' was thrown.{Environment.NewLine}Parameter name: unitTestResultXmlFormat{Environment.NewLine}Actual value was None.", argumentOutOfRangeException.Message);
+            Assert.AreEqual($"Exception of type 'System.ArgumentOutOfRangeException' was thrown. (Parameter 'unitTestResultXmlFormat'){Environment.NewLine}Actual value was None.", argumentOutOfRangeException.Message);
         }
 
         [Test]
