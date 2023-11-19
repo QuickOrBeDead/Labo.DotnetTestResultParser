@@ -1,6 +1,7 @@
 ﻿namespace Labo.DotnetTestResultParser.Parsers
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
     using System.Xml.Linq;
@@ -14,6 +15,7 @@
     /// <seealso cref="Labo.DotnetTestResultParser.Parsers.ITestResultsParser" />
     public sealed class MsTestResultsParser : ITestResultsParser
     {
+        [SuppressMessage("SonarLint", "S5332: Using clear-text protocols is security-sensitive", Justification = "Reviewed")]
         private static readonly XNamespace Ns = @"http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
 
         /// <inheritdoc />
