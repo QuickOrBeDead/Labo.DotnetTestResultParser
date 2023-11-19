@@ -27,6 +27,8 @@
             Assert.AreEqual("Value cannot be null. (Parameter 'testRuns')", argumentNullException.Message);
         }
 
+        private static readonly char[] Separator = { ',' };
+
         [Test]
         [TestCase("", true)]
         [TestCase("true", true)]
@@ -37,7 +39,7 @@
         public void IsSuccess(string successString, bool expected)
         {
             // Arrange
-            IList<TestRun> testRuns = successString.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(x => new TestRun{ IsSuccess = Convert.ToBoolean(x, CultureInfo.InvariantCulture)}).ToList();
+            IList<TestRun> testRuns = successString.Split(Separator, StringSplitOptions.RemoveEmptyEntries).Select(x => new TestRun{ IsSuccess = Convert.ToBoolean(x, CultureInfo.InvariantCulture)}).ToList();
             MultipleTestRunOutputTemplateFactory factory = CreateTemplateFactory(testRuns);
 
             // Act

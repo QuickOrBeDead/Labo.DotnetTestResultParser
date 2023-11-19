@@ -19,10 +19,7 @@
 
         private static void AssertException(Type exceptionType)
         {
-            if (exceptionType == null)
-            {
-                throw new ArgumentNullException(nameof(exceptionType));
-            }
+            ArgumentNullException.ThrowIfNull(exceptionType);
 
             // Arrange - Act - Assert
             if (HasPublicConstructor(exceptionType))

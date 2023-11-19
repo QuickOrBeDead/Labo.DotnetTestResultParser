@@ -91,7 +91,7 @@
             string testXmlPath = XmlPathUtility.GetTestXmlPath("*.directorytest.xml");
 
             // Act
-            IList<string> files = _fileSystemManager.EnumerateFiles(testXmlPath).ToList();
+            var files = _fileSystemManager.EnumerateFiles(testXmlPath).ToList();
             
             // Assert
             Assert.AreEqual(2, files.Count);
@@ -106,7 +106,7 @@
             string testXmlPath = XmlPathUtility.GetTestXmlPath("1.directorytest.xml");
 
             // Act
-            IList<string> files = _fileSystemManager.EnumerateFiles(testXmlPath).ToList();
+            var files = _fileSystemManager.EnumerateFiles(testXmlPath).ToList();
 
             // Assert
             Assert.AreEqual(1, files.Count);

@@ -74,8 +74,8 @@
         [SuppressMessage("Major Code Smell", "S1144:Unused private types or members should be removed", Justification = "<Pending>")]
         private int OnExecute()
         {
-            ITestResultsOutputWriterFactory outputWriterFactory = new DefaultTestResultsOutputWriterFactory();
-            using (ITestResultsOutputWriter outputWriter = outputWriterFactory.Create(Output))
+            var outputWriterFactory = new DefaultTestResultsOutputWriterFactory();
+            using (var outputWriter = outputWriterFactory.Create(Output))
             {
                 OutputTemplateManager outputTemplateManager = new OutputTemplateManager(Path, new TestRunResultParser(Format), new DefaultFileSystemManager());
                 IOutputTemplateFactory outputTemplateFactory = outputTemplateManager.CreateOutputTemplateFactory();

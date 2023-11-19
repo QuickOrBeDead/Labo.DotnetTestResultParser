@@ -29,7 +29,7 @@
         {
             ArgumentNullException.ThrowIfNull(outputWriter);
 
-            outputWriter.Write(_testRuns.All(x => x.IsSuccess) ? TestRunResult.Passed : TestRunResult.Failed);
+            outputWriter.Write(Array.TrueForAll(_testRuns, x => x.IsSuccess) ? TestRunResult.Passed : TestRunResult.Failed);
         }
     }
 }
